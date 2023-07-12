@@ -1,10 +1,12 @@
 import React from "react";
 
+import './App.css';
+
+import TopNav from "./components/ui/TopNav";
+
 const App = () => {
     return (
-        <h1>
-            Welcome to React App 2
-        </h1>
+        <TopNav style={{border:'1px solid blue'}}/>
     )
 }
 

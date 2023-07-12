@@ -1,0 +1,22 @@
+.error-container {
+  margin-top:10vh;
+  width: 100%;
+}
+
+.error-container img, h2, h3, p {
+  margin-left: auto;
+  margin-right: auto;
+  display:block;
+  text-align: center;
+}
+
+.error-container a, a:visited {
+  text-decoration: none;
+  color: darkblue;
+  font-weight: bold
+}
+
+.error-message {
+  color: #991100;
+  font-weight: bold;
+}
