@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 import { validate } from '../../utils/validators';
 import './FormInput.css';
@@ -30,7 +30,7 @@ const FormInput = ({
   id,
   classes = '',
   label,
-  placeholder,
+  placeholder = '',
   validators,
   errorText,
   onInput,
@@ -59,20 +59,39 @@ const FormInput = ({
   //Reducer instantiation. Tracks the value, isTouched, and isValid states
   const [state, dispatch] = useReducer(inputReducer, 
     {
-      value: initalValue || '',
+      value: initialValue || '',
       isTouched: false,
       isValid: initialValidity || false
     })
 
+    const handleFocusChange = (evt) => {
+      dispatch({
+        type: 'change',
+        value: evt.target.value,
+        validators: validators
+      })
+    }
+
+    // useEffect(() => {
+    //   onInput(id, value, isValid)
+    // }, [id, value, isValid, onInput])
+
+    const touchHandler = () => {
+      dispatch({
+        type: 'touch'
+      })
+    }
 
   return (
-    <div className={`input-container`}>
+    <div className={`input-container ${!state.isValid && state.touched && 'input-invalid'}`}>
       <label htmlFor={id}>{label}</label>
       {inputArea
-        ? <textarea className={`area-input ${classes}`} id={id} placeholder={placeholder} />
-        : <input className={`${type}-input ${classes}`} id={id} type={type} placeholder={placeholder} />
+        ? <textarea className={`area-input ${classes}`} id={id} placeholder={placeholder} onChange={onInput} />
+        : <input className={`${type}-input ${classes}`} id={id} type={type} placeholder={placeholder} onChange={onInput} />
       }
-      {!isValid && <p>{errorText}</p>}
+      {!state.isValid && state.isTouched && <p>{errorText}</p>}
     </div>
   );
 };
+
+export default FormInput
