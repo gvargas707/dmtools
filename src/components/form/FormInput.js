@@ -57,14 +57,14 @@ const FormInput = ({
   }
 
   //Reducer instantiation. Tracks the value, isTouched, and isValid states
-  const [state, dispatch] = useReducer(inputReducer, 
+  const [inputState, dispatch] = useReducer(inputReducer, 
     {
       value: initialValue || '',
       isTouched: false,
       isValid: initialValidity || false
     })
 
-    const handleFocusChange = (evt) => {
+    const changeHandler = (evt) => {
       dispatch({
         type: 'change',
         value: evt.target.value,
@@ -72,9 +72,12 @@ const FormInput = ({
       })
     }
 
-    // useEffect(() => {
-    //   onInput(id, value, isValid)
-    // }, [id, value, isValid, onInput])
+    // const { id, onInput } = props;
+    const { value, isValid } = inputState;
+
+     useEffect(() => {
+       onInput(id, value, isValid)   
+     }, [id, value, isValid, onInput])
 
     const touchHandler = () => {
       dispatch({
@@ -83,13 +86,13 @@ const FormInput = ({
     }
 
   return (
-    <div className={`input-container ${!state.isValid && state.touched && 'input-invalid'}`}>
+    <div className={`input-container ${!inputState.isValid && inputState.touched && 'input-invalid'}`}>
       <label htmlFor={id}>{label}</label>
       {inputArea
-        ? <textarea className={`area-input ${classes}`} id={id} placeholder={placeholder} onChange={onInput} />
-        : <input className={`${type}-input ${classes}`} id={id} type={type} placeholder={placeholder} onChange={onInput} />
+        ? <textarea className={`area-input ${classes}`} id={id} placeholder={placeholder} onChange={changeHandler} />
+        : <input className={`${type}-input ${classes}`} id={id} type={type} placeholder={placeholder} onChange={changeHandler} />
       }
-      {!state.isValid && state.isTouched && <p>{errorText}</p>}
+      {!inputState.isValid && inputState.isTouched && <p>{errorText}</p>}
     </div>
   );
 };
