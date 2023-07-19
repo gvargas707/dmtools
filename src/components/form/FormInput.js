@@ -35,7 +35,7 @@ const FormInput = ({
   errorText,
   onInput,
   initialValue,
-  initialValidity = true
+  initialValidity
 }) => {
   //input Reducer function to track state and define dispatch actions
   const inputReducer = (state, action) => {

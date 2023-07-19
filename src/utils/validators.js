@@ -98,7 +98,7 @@ const validate = (value, validators) => {
       if(!isFieldValid) errorMessages.push('Value must be a valid email.')
     }
   }
-  return {value, isValid, errorMessages};
+  return isValid;
 }
 
 module.exports = {

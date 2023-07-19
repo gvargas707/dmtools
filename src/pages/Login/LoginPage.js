@@ -2,7 +2,7 @@ import React from "react";
 import FormInput from "../../components/form/FormInput"
 import useForm from "../../hooks/useForm";
 
-import { VALIDATOR_REQUIRED } from '../../utils/validators'
+import { VALIDATOR_REQUIRED, VALIDATOR_MINLENGTH } from '../../utils/validators'
 
 import './LoginPage.css';
 
@@ -22,7 +22,6 @@ const LoginPage = () => {
     false
   )
 
-  console.log(`Form Valid: ${formState.isValid}`)
   return (
     <div className="login-form">
       <h1>Login</h1>
@@ -39,12 +38,12 @@ const LoginPage = () => {
           type='password'
           id='password'
           label='password'
-          validators={[VALIDATOR_REQUIRED()]}
+          validators={[VALIDATOR_REQUIRED(), VALIDATOR_MINLENGTH(6)]}
           errorText='Password is required'
           onInput={changeHandler}
         />
         <button
-          diabled={!formState.isValid}
+          disabled={!formState.isValid}
         >Login</button>
       </form>
     </div>
