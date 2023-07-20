@@ -1,3 +1,5 @@
+
+
 div .top-nav{
   display: flex;
   flex-direction: row;
@@ -14,7 +16,7 @@ div.top-nav p {
   padding-right: .2em;
 }
 
-.top-nav a, a:visited {
+div.top-nav__auth a, a:visited{
   color: white;
   text-decoration: none;
 }

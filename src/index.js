@@ -6,7 +6,12 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import PublicRoute from "./components/auth/PublicRoute";
+
 import ErrorPage from "./pages/ErrorPage";
+import LoginPage from "./pages/login/LoginPage"
+import SharePage from "./pages/share/SharePage";
 
 const domNode = document.getElementById('root');
 const root = createRoot(domNode);
@@ -15,7 +20,17 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "login",
+        element: <PublicRoute><LoginPage /></PublicRoute>,
+      },
+      {
+        path: "share",
+        element: <ProtectedRoute><SharePage /></ProtectedRoute>,
+      }
+    ]
   },
 ])
 

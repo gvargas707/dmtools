@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import FormInput from "../../components/form/FormInput"
 import useForm from "../../hooks/useForm";
 
-import { VALIDATOR_REQUIRED, VALIDATOR_MINLENGTH } from '../../utils/validators'
+import { VALIDATOR_REQUIRED, VALIDATOR_MINLENGTH } from '../../utils/validators';
+import { AuthContext } from "../../context/AuthContext";
 
 import './LoginPage.css';
 
 const LoginPage = () => {
+  const [submitError, setSubmitError] = useState('');
+  const auth = useContext(AuthContext);
+
 
   const [formState, changeHandler] = useForm(
     {
@@ -20,12 +24,18 @@ const LoginPage = () => {
       }
     },
     false
-  )
+  );
+
+  const loginHandler = (event) => {
+    event.preventDefault()
+    let user = auth.login(event.target.username.value)
+    user ? "" : setSubmitError("User does not exist")
+  };
 
   return (
     <div className="login-form">
       <h1>Login</h1>
-      <form>
+      <form onSubmit={loginHandler}>
         <FormInput
           type='text'
           id='username'
@@ -46,8 +56,9 @@ const LoginPage = () => {
           disabled={!formState.isValid}
         >Login</button>
       </form>
+      <p id='submit-error'>{submitError}</p>
     </div>
   )
 };
 
-export default LoginPage
+export default LoginPage;

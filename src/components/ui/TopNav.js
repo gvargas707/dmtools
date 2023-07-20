@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import './TopNav.css';
 
 import HomeLogo from "./HomeLogo";
 import NavElement from "./NavElement";
+import { AuthContext } from "../../context/AuthContext"
 
 const TopNav = props => {
-  // const [isVisible, setIsVisible] = useState(false);
 
-  // const onHoverHandler = () => {
-  //   setIsVisible(!isVisible)
-  // }
+  const auth = useContext(AuthContext)
+
+  const logoutHandler = () => {
+    auth.logout()
+  }
 
   return (
     <div className="top-nav">
@@ -35,11 +37,13 @@ const TopNav = props => {
             {route: '/generate-town', label: 'Generate Town'}
           ]}
         />
-        <NavElement label={'Share'}/>
+        {auth.isLoggedIn && (<Link to={'/share'}>Share</Link>)}
       </div>
       <div className="top-nav__auth">
-        <Link to={`/login`}>Login</Link>
-        <Link to={`/signup`}>Signup</Link>
+        {auth.isLoggedIn && auth.role === 'admin' }
+        {!auth.isLoggedIn && (<Link to={`/login`}>Login</Link>)}
+        {!auth.isLoggedIn && (<Link to={`/signup`}>Signup</Link>)}
+        {auth.isLoggedIn && (<Link to={`/`} onClick={logoutHandler}>Logout</Link>)}
       </div>
     </div>
   )
