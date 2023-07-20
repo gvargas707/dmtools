@@ -5,7 +5,6 @@ const formReducer = (state,action) => {
       case 'change':
         let formIsValid = true;
         for (const input in state.inputs){
-          console.log(state.inputs)
           if (!state.inputs[input]){
             continue;
           }
@@ -15,11 +14,6 @@ const formReducer = (state,action) => {
             formIsValid = formIsValid && state.inputs[input].isValid;
           }
         }
-        console.log('STATE')
-        console.log(state)
-        console.log('\n\n\nACTION')
-        console.log(action)
-        console.log('\n\n\n')
         return {
           ...state,
           inputs: {
