@@ -16,7 +16,7 @@ const NavElement = props => {
       <p>{props.label} {props.routes ? <i className='fa fa-caret-down'></i> : ''}</p>
         {props.routes && (
         <div className="dropdown-content">
-          {props.routes.map(r => <Link to={r.route}>{r.label}</Link>)}
+          {props.routes.map(r => <Link key={r.label} to={r.route}>{r.label}</Link>)}
         </div>
         )}
       </div>

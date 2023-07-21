@@ -4,7 +4,6 @@ import { Navigate } from "react-router-dom";
 
 const PublicRoute = ({children}) => {
   const auth = useContext(AuthContext);
-  console.log(children)
   return auth.isLoggedIn
   ? <Navigate to='/' replace={true}/>
   : children

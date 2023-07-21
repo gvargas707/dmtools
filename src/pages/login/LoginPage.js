@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FormInput from "../../components/form/FormInput"
 import useForm from "../../hooks/useForm";
 
@@ -31,6 +31,32 @@ const LoginPage = () => {
     let user = auth.login(event.target.username.value)
     user ? "" : setSubmitError("User does not exist")
   };
+
+  const validateLocalStorageUser = () => {
+    let userKey = localStorage.getItem('user')
+
+    if (!userKey) {
+      return null
+    }
+
+    try {
+      return JSON.parse(userKey)
+    } catch (error) {
+      console.log(`Stored user key is invalid ${userKey}`)
+      return null
+    }
+  }
+
+
+  useEffect(() => {
+    //check if localstorage has a user/auth key
+
+    //placeholder auth logic
+    if ( localStorage.user && validateLocalStorageUser() ){
+      let authUser = JSON.parse(localStorage.getItem('user'))
+      auth.login(authUser.username)
+    }
+  }, [])
 
   return (
     <div className="login-form">

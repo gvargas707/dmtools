@@ -43,6 +43,7 @@ const TopNav = props => {
         {auth.isLoggedIn && auth.role === 'admin' }
         {!auth.isLoggedIn && (<Link to={`/login`}>Login</Link>)}
         {!auth.isLoggedIn && (<Link to={`/signup`}>Signup</Link>)}
+        {auth.isLoggedIn && auth.user.role === 'admin' && (<Link to={`/admin-panel`}>Admin Panel</Link>)}
         {auth.isLoggedIn && (<Link to={`/`} onClick={logoutHandler}>Logout</Link>)}
       </div>
     </div>
