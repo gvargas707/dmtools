@@ -6,7 +6,7 @@ const HomeLogo = props => {
   const logoWidth = props.width || '120px'
   const logoHeight = props.height || '80px'
   return (
-    <img src={logo} style={{width:`${logoWidth}`, height:`${logoHeight}`}} />
+    <img src={logo} style={{width:`${logoWidth}`, height:`${logoHeight}`, padding:'0 .5em 0 .5em'}} />
   )
 }
 

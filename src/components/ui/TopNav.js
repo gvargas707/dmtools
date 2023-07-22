@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import './TopNav.css';
 
 import HomeLogo from "./HomeLogo";
-import NavElement from "./NavElement";
+//import NavElement from "./NavElement";
+import NavLink from "./NavLink";
 import { AuthContext } from "../../context/AuthContext"
 
 const TopNav = props => {
@@ -19,7 +20,7 @@ const TopNav = props => {
     <div className="top-nav">
       <HomeLogo width="84px" height="43px"/>
       <div className="top-nav__tools">
-        <NavElement
+        {/* <NavElement
           dropdown={true}
           label={'Explore'}
           routes={[
@@ -37,7 +38,9 @@ const TopNav = props => {
             {route: '/generate-town', label: 'Generate Town'}
           ]}
         />
-        {auth.isLoggedIn && (<Link to={'/share'}>Share</Link>)}
+        {auth.isLoggedIn && (<Link to={'/share'}>Share</Link>)} */}
+        <NavLink label={'Explore'}/>
+        <NavLink label={'Create'}/>
       </div>
       <div className="top-nav__auth">
         {auth.isLoggedIn && auth.role === 'admin' }
