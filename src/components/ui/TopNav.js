@@ -20,27 +20,16 @@ const TopNav = props => {
     <div className="top-nav">
       <HomeLogo width="84px" height="43px"/>
       <div className="top-nav__tools">
-        {/* <NavElement
-          dropdown={true}
-          label={'Explore'}
-          routes={[
-            {route: '/', label: 'Home'},
-            {route: '/npc-tables', label: 'Browse NPC Tables'},
-            {route: '/towns', label: 'Browse Towns'}
-          ]}
-        />
-        <NavElement
-          dropdown={true}
+        <NavLink label={'Explore'}/>
+        <NavLink
           label={'Create'}
           routes={[
             {route: '/generate-npc', label: 'Generate NPC'},
             {route: '/generate-creature', label: 'Generate Creature'},
-            {route: '/generate-town', label: 'Generate Town'}
+            {route: '/generate-town', label: 'Generate Town'},
           ]}
         />
-        {auth.isLoggedIn && (<Link to={'/share'}>Share</Link>)} */}
-        <NavLink label={'Explore'}/>
-        <NavLink label={'Create'}/>
+        {auth.isLoggedIn && (<NavLink label={'Share'}/>)}
       </div>
       <div className="top-nav__auth">
         {auth.isLoggedIn && auth.role === 'admin' }

@@ -4,7 +4,6 @@ div .top-nav{
   display: flex;
   flex-direction: row;
   background-color: #233565;
-  padding: .5em;
   margin: 0 0 .5rem 0;
   color: white;
 }
@@ -22,7 +21,8 @@ div.top-nav__auth a, a:visited{
 }
 
 .top-nav__tools {
-  display:inline-flex;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, 100px);
   align-items: stretch;
   flex-direction: row;
   width: 80%;

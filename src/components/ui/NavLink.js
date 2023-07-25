@@ -4,11 +4,19 @@ import { Link } from "react-router-dom";
 import './NavLink.css'
 
 const NavLink = (props) => {
-  const { label, href } = props
+  const { label, href, routes } = props
+
   return(
-  <div className='nav-element'>
-    <Link to={href}>{label}</Link>
-  </div>
+    <div class="nav-dropdown">
+      <Link className="nav-element" to={href}>
+        <div>{label}</div>
+      </Link>
+      <div class="nav-dropdown--elements">
+        {routes ?
+          routes.map(r => <Link key={r.label} to={r.route}>{r.label}</Link>) 
+          : ''}
+      </div>  
+    </div>
   )
 };
 
