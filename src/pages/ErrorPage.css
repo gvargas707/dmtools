@@ -10,7 +10,7 @@
   text-align: center;
 }
 
-.error-container a, a:visited {
+.error-container a,error-home, a.error-home:visited {
   text-decoration: none;
   color: darkblue;
   font-weight: bold
