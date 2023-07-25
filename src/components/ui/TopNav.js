@@ -20,9 +20,10 @@ const TopNav = props => {
     <div className="top-nav">
       <HomeLogo width="84px" height="43px"/>
       <div className="top-nav__tools">
-        <NavLink label={'Explore'}/>
+        <NavLink label={'Explore'} to={`/explore`}/>
         <NavLink
           label={'Create'}
+          to={`/create`}
           routes={[
             {route: '/generate-npc', label: 'Generate NPC'},
             {route: '/generate-creature', label: 'Generate Creature'},

@@ -7,7 +7,7 @@ div.nav-dropdown:hover div.nav-dropdown--elements {
   display:block;
   min-width: 150px;
   top:100%;
-  left:20%;
+  left:0%;
 }
 
 div.nav-dropdown--elements a {
@@ -25,6 +25,7 @@ div.nav-dropdown--elements{
   position:absolute;
   background-color: #233565;
   z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 div.nav-dropdown--elements a, a:visited {
@@ -47,6 +48,7 @@ a.nav-element div {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+  white-space: nowrap;
 }
 
 a.nav-element:hover {

@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+
 import './NavLink.css'
 
 const NavLink = (props) => {
-  const { label, href, routes } = props
+  const { label, to, routes } = props
 
   return(
     <div class="nav-dropdown">
-      <Link className="nav-element" to={href}>
-        <div>{label}</div>
+      <Link className="nav-element" to={to}>
+        <div>{label} {routes ? <FontAwesomeIcon icon={faCaretDown}/>: ''}</div>
       </Link>
       <div class="nav-dropdown--elements">
         {routes ?
