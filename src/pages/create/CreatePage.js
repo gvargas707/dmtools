@@ -1,7 +1,13 @@
 import React from 'react';
 
-const CreatePage = () => {
+import SideBar from '../../components/ui/sidebar/SideBar';
 
+const CreatePage = () => {
+return (
+  <div>
+    <SideBar/>
+  </div>
+)
 }
 
 export default CreatePage;

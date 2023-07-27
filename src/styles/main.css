@@ -1,0 +1,5 @@
+/* This page covers the main-container divs for content pages */
+div.main-container {
+  flex: 1;
+  padding: 1em;
+}
