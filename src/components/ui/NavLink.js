@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
+import { icons } from '../../utils/icons';
+
+
 import './NavLink.css'
 
 const NavLink = (props) => {
@@ -12,7 +15,7 @@ const NavLink = (props) => {
   return(
     <div class="nav-dropdown">
       <Link className="nav-element" to={to}>
-        <div>{label} {routes ? <FontAwesomeIcon icon={faCaretDown}/>: ''}</div>
+        <div>{label} {routes ? <FontAwesomeIcon icon={icons['caretDown']}/>: ''}</div>
       </Link>
       <div class="nav-dropdown--elements">
         {routes ?

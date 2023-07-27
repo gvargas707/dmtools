@@ -28,7 +28,8 @@ div.nav-dropdown--elements{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-div.nav-dropdown--elements a, a:visited {
+div.nav-dropdown--elements a,
+div.nav-dropdown--elements a:visited {
   color: white;
 }
 

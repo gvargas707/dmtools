@@ -15,7 +15,8 @@ div.top-nav p {
   padding-right: .2em;
 }
 
-div.top-nav__auth a, a:visited{
+div.top-nav__auth a,
+div.top-nav__auth a:visited{
   color: white;
   text-decoration: none;
 }
