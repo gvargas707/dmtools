@@ -13,14 +13,13 @@ const SideBarItem = ({
   url,
   label
 }) => {
-  console.log(icons)
   return (
-    <div className='sidebar-item'>
-      <Link to={url}>
+    <Link className='sidebar-item' to={url}>
+      <div >
         <FontAwesomeIcon icon={icons[icon] || icons['question']} />
-        <span class='sidebar-item--label'>{label}</span>
-      </Link>
-    </div>
+        <span className='sidebar-item--label'>{label}</span>
+      </div>
+    </Link>
   )
 };
 

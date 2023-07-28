@@ -1,13 +1,14 @@
-div.sidebar-item {
+a.sidebar-item {
   height: 2.5em;
+  display:block;
   position: relative;
 }
 
-div.sidebar-item:hover {
+a.sidebar-item:hover {
   background: #eee;
 }
 
-div.sidebar-item a {
+a.sidebar-item div {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -17,10 +18,10 @@ div.sidebar-item a {
   padding: 0.1em;
 }
 
-div.sidebar-item svg {
+a.sidebar-item div svg {
   width: 1.1em;
 }
 
-div.sidebar-item span.sidebar-item--label {
+a.sidebar-item div span.sidebar-item--label {
   margin-left: .25em;
 }

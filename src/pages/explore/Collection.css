@@ -1,0 +1,7 @@
+div.collection {
+  width: 100%;
+}
+
+div.collection .collection-carousel {
+  display: flex;
+}

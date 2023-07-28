@@ -13,11 +13,11 @@ const NavLink = (props) => {
   const { label, to, routes } = props
 
   return(
-    <div class="nav-dropdown">
+    <div className="nav-dropdown">
       <Link className="nav-element" to={to}>
         <div>{label} {routes ? <FontAwesomeIcon icon={icons['caretDown']}/>: ''}</div>
       </Link>
-      <div class="nav-dropdown--elements">
+      <div className="nav-dropdown--elements">
         {routes ?
           routes.map(r => <Link key={r.label} to={r.route}>{r.label}</Link>) 
           : ''}

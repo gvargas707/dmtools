@@ -12,7 +12,10 @@ import PublicRoute from "./components/auth/PublicRoute";
 import ErrorPage from "./pages/ErrorPage";
 import LoginPage from "./pages/login/LoginPage"
 import SharePage from "./pages/share/SharePage";
+
 import ExplorePage from "./pages/explore/ExplorePage";
+import ExploreCollection from "./pages/explore/ExploreCollection";
+
 import CreatePage from "./pages/create/CreatePage";
 
 const domNode = document.getElementById('root');
@@ -34,7 +37,13 @@ const router = createBrowserRouter([
       },
       {
         path: "explore",
-        element: <ExplorePage />
+        element: <ExplorePage />,
+        children: [
+          {
+            index: true,
+            element: <ExploreCollection />
+          }
+        ]
       },
       {
         path: "create",
