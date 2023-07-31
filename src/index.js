@@ -17,6 +17,8 @@ import ExplorePage from "./pages/explore/ExplorePage";
 import ExploreCollection from "./pages/explore/ExploreCollection";
 
 import CreatePage from "./pages/create/CreatePage";
+import CreatePageLanding from "./pages/create/CreatePageLanding";
+import NPCGeneratorBuilder from "./pages/create/GeneratorBuilders/NPCGeneratorBuilder";
 
 const domNode = document.getElementById('root');
 const root = createRoot(domNode);
@@ -47,7 +49,17 @@ const router = createBrowserRouter([
       },
       {
         path: "create",
-        element: <CreatePage />
+        element: <CreatePage />,
+        children: [
+          {
+            index: true,
+            element: <CreatePageLanding />
+          },
+          {
+            path: "npc-builder",
+            element: <NPCGeneratorBuilder />
+          }
+        ]
       }
     ]
   },

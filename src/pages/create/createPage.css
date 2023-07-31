@@ -1,0 +1,13 @@
+div.main {
+  padding: 0.5em;
+  flex: 1;
+}
+
+div.main h1 {
+  margin: 0.1em;
+}
+
+div.main a {
+  color: inherit;
+  text-decoration: none;
+}
