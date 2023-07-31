@@ -1,4 +1,4 @@
 /node_modules
 .env.*
-src/data/userData.js
+src/data/*
 src/utils/random.js
