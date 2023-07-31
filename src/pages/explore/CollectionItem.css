@@ -1,5 +1,6 @@
 div.collection-item {
-  width: 10%;
+  width: 7%;
+  min-width: 120px;
   text-align: center;
   border: 1px solid gray;
   border-radius: 5px;
@@ -9,7 +10,7 @@ div.collection-item {
 }
 
 div.collection-item svg {
-  width: 100%;
+  width: 50%;
   height: fit-content;
   aspect-ratio: 1/1;
 }
@@ -20,12 +21,23 @@ div.collection-item img {
   object-fit: fill;
 }
 
-div.collection-iteminfo span.collection-iteminfo--label {
+div.collection-itemdisplay span.collection-iteminfo--label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5em;
+  height: 3em;
+  font-weight: bold;
+  font-size: 0.9em;
+  width: 100%;
+}
+
+/* div.collection-iteminfo span.collection-iteminfo--label {
   font-weight: bold;
   display: inline-block;
   width: 100%;
   margin-bottom: 0.25em;
-}
+} */
 
 div.collection-item div.collection-iteminfo svg.collection-iteminfo--star {
   width: 15pt;

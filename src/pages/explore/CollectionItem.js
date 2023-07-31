@@ -14,11 +14,15 @@ const CollectionItem = ({
 }) => {
   return (
     <div className='collection-item'>
+      <div className='collection-itemdisplay'>
       <ItemThumbnail src={''} type={type}/>
+      <span className='collection-iteminfo--label'>{label}</span>
       <hr />
+      </div>
       <div className='collection-iteminfo'>
-        <span className='collection-iteminfo--label'>{label}</span>
-        <span className='collection-iteminfo--author'>{author}</span> | <FontAwesomeIcon className='collection-iteminfo--star' icon={icons['regStar']}/> <span className='collection-iteminfo--rating'>{rating}</span>
+        <span className='collection-iteminfo--author'>{author}</span>
+        <br/>
+        <FontAwesomeIcon className='collection-iteminfo--star' icon={icons['regStar']}/> <span className='collection-iteminfo--rating'>{rating}</span>
       </div>
       
     </div>

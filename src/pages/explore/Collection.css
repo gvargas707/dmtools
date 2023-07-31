@@ -4,4 +4,5 @@ div.collection {
 
 div.collection .collection-carousel {
   display: flex;
+  flex-wrap: wrap;
 }
