@@ -1,0 +1,30 @@
+div.generator-table {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+div.generator-table * {
+  box-sizing: border-box;
+}
+
+.generator-table__title,
+.generator-table__description {
+  width: 100%;
+  margin: 0.5em;
+}
+
+table.generator-table__table {
+  border: 1px solid gray;
+  width: 100%;
+}
+
+table.generator-table__table tr,
+table.generator-table__table th,
+table.generator-table__table td {
+}
+
+table.generator-table__table input,
+table.generator-table__table textarea {
+  width: max-content;
+}
