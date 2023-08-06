@@ -1,5 +1,6 @@
 div.generator-table {
   border: 1px solid gray;
+  background-color: #3C5A99;
   border-radius: 5px;
   padding: 0.5em;
 }
@@ -8,23 +9,84 @@ div.generator-table * {
   box-sizing: border-box;
 }
 
+div.generator-table input,
+div.generator-table textarea {
+  background-color: #708DCD;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  resize: none;
+  
+}
+
 .generator-table__title,
 .generator-table__description {
   width: 100%;
-  margin: 0.5em;
+  margin: 0.5em 0;
+  font-size: 1.5em;
+  padding: 0.25em;
+}
+
+div.generator-table__properties {
+  width: 50%;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin: 0.5em 0;
+  font-size: 1.1em;
+  align-items: center;
+}
+
+div.generator-table__properties input,
+div.generator-table__properties textarea {
+  flex: 1;
+  font-size: 1.1em;
 }
 
 table.generator-table__table {
-  border: 1px solid gray;
+  border: 1px solid black;
+  border-radius: 5px;
   width: 100%;
 }
 
-table.generator-table__table tr,
-table.generator-table__table th,
-table.generator-table__table td {
+table.generator-table__table input {
+  text-align: center;
+  width: 50%;
+  font-size: 1.05em;
 }
 
-table.generator-table__table input,
-table.generator-table__table textarea {
-  width: max-content;
+table.generator-table__form {
+  padding: 0.25em;
 }
+
+
+.generator-table__table--col-medium {
+  width: 10%;
+}
+
+.generator-table__table--col-small {
+  width: 5%;
+}
+
+table.generator-table__table tr {
+  padding: 0.25em 0;
+}
+
+.generator-table__table td input {
+  display:block;
+  margin: auto;
+}
+
+td.generator-table__weight-cell {
+  width: 5%;
+}
+
+td.generator-table__range-cell input{
+  width:85%;
+}
+
+td.generator-table__weight-cell input {
+  width: 85%;
+}
+
