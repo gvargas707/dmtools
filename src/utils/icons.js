@@ -22,7 +22,15 @@ import {
   faQuestion,
   faHouseChimney,
   faGem,
-  faStar
+  faStar,
+  faPlus,
+  faRotateLeft,
+  faRotateRight,
+  faBars,
+  faCircleQuestion,
+  faCirclePlus,
+  faCircleMinus,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { 
@@ -55,4 +63,12 @@ export const icons = {
   table: faTableList,
   toolbox: faToolbox,
   user: faUser,
+  plus: faPlus,
+  rotateLeft: faRotateLeft,
+  rotateRight: faRotateRight,
+  bars: faBars,
+  circleQuestion: faCircleQuestion,
+  circlePlus: faCirclePlus,
+  circleMinus: faCircleMinus,
+  trash: faTrash,
 };
