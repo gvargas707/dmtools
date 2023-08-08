@@ -1,92 +1,122 @@
-div.generator-table {
+.generator-table {
+  width:100%;
   border: 1px solid gray;
-  background-color: #3C5A99;
   border-radius: 5px;
   padding: 0.5em;
 }
 
-div.generator-table * {
+.generator-table input,
+.generator-table textarea {
   box-sizing: border-box;
 }
 
-div.generator-table input,
-div.generator-table textarea {
-  background-color: #708DCD;
-  border-radius: 5px;
-  border: none;
-  width: 100%;
+.generator-table textarea {
   resize: none;
-  
 }
 
-.generator-table__title,
-.generator-table__description {
+.generator-table__title {
   width: 100%;
-  margin: 0.5em 0;
   font-size: 1.5em;
   padding: 0.25em;
+  margin-bottom: 0.5em;
 }
 
-div.generator-table__properties {
-  width: 50%;
+.generator-table__label {
+  font-size: 1.1em;
+}
+
+.generator-table__label--bold {
+  font-weight: bold;
+}
+
+.generator-table__description {
+  width: 100%;
+  resize: vertical;
+}
+
+.generator-table__properties {
+  margin: 1em 0;
+}
+
+.generator-table__properties svg {
+  margin: 0 0.5em;
+}
+
+.generator-table__actions {
+  padding: 0.25em;
   display:flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1em;
-  margin: 0.5em 0;
-  font-size: 1.1em;
-  align-items: center;
 }
 
-div.generator-table__properties input,
-div.generator-table__properties textarea {
-  flex: 1;
-  font-size: 1.1em;
-}
-
-table.generator-table__table {
-  border: 1px solid black;
-  border-radius: 5px;
+.generator-table__button {
   width: 100%;
 }
 
-table.generator-table__table input {
+.generator-table__button svg {
+  color: #4CAF50;
+}
+
+.generator-table__roll-formula-container label {
+  margin-right: 0.5em;
+}
+
+.generator-table__roll-formula-container svg {
+  margin: 0 0.5em;
+}
+
+.generator-table__column-actions-container {
+  margin: 0 0 0 auto;
+}
+
+.generator-table__column-actions-container button {
+  font-size: 1.25em;
+  margin: 0 0.25em;
+}
+
+.generator-table__table {
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0.1em;
+}
+
+.generator-table__table input {
   text-align: center;
-  width: 50%;
-  font-size: 1.05em;
 }
 
-table.generator-table__form {
+.generator-table__table textarea {
+  width: 100%;
+}
+
+.generator-table__table td {
+  text-align: center;
+}
+
+.generator-table__table tr {
+  border: 1px solid gray;
+  border-collapse: collapse;
+}
+
+.generator-table__column-header__icon {
+  margin: 0 0.1em;
+  color: #FF6666;
+}
+
+.generator-table__table .col-sm {
+  width: 4%;
+}
+
+.generator-table__table .col-md {
+  width: 8%;
+}
+
+.generator-table__actions .generator-table__actions__test-roll {
+  font-size: 1.1em;
   padding: 0.25em;
+  margin: 0.25em;
 }
 
-
-.generator-table__table--col-medium {
-  width: 10%;
+.generator-table__actions .generator-table__actions__save {
+  font-size: 1.1em;
+  padding: 0.25em;
+  margin: 0.25em;
 }
-
-.generator-table__table--col-small {
-  width: 5%;
-}
-
-table.generator-table__table tr {
-  padding: 0.25em 0;
-}
-
-.generator-table__table td input {
-  display:block;
-  margin: auto;
-}
-
-td.generator-table__weight-cell {
-  width: 5%;
-}
-
-td.generator-table__range-cell input{
-  width:85%;
-}
-
-td.generator-table__weight-cell input {
-  width: 85%;
-}
-
