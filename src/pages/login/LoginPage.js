@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import FormInput from "../../components/form/FormInput"
+
+import Input from "../../components/form/Input"
 import useForm from "../../hooks/useForm";
 
 import { VALIDATOR_REQUIRED, VALIDATOR_MINLENGTH } from '../../utils/validators';
@@ -62,7 +63,7 @@ const LoginPage = () => {
     <div className="login-form">
       <h1>Login</h1>
       <form onSubmit={loginHandler}>
-        <FormInput
+        <Input
           type='text'
           id='username'
           label='username'
@@ -70,7 +71,7 @@ const LoginPage = () => {
           errorText='Username is required'
           onInput={changeHandler}
         />
-        <FormInput
+        <Input
           type='password'
           id='password'
           label='password'
@@ -79,7 +80,7 @@ const LoginPage = () => {
           onInput={changeHandler}
         />
         <button
-          disabled={!formState.isValid}
+          disabled={!formState.isFormValid}
         >Login</button>
       </form>
       <p id='submit-error'>{submitError}</p>
