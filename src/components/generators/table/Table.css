@@ -1,0 +1,43 @@
+
+div.table-container {
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 100%;
+  padding: 0.25em;
+}
+
+div.table-container form label[for*='description']{
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.table-container__title {
+  font-size: 1.5em;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.3em;
+}
+
+.table-container__description {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.3em;
+}
+
+div.properties {
+  padding: 0.25em;
+  margin: 0.5em 0;
+}
+
+label.properties__checkbox {
+  font-size: 1.05em;
+}
+
+div.actions {
+  padding: 0.2em;
+  margin: 0.5em 0;
+}
+
+label.actions__rollFormula {
+  margin-right: .75em;
+}

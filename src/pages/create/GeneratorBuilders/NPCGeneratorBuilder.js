@@ -1,6 +1,7 @@
 import React from "react";
 
 import Table from "../../../components/generators/table/Table";
+import OldTable from "../../../components/generators/table/OldTable";
 import TableRoller from "../GeneratorBlocks/TableRoller";
 
 import { tableList } from "../../../data/lists/faerunLists";
@@ -20,8 +21,12 @@ const NPCGeneratorBuilder = () => {
       </div>
       <div className='example-npc'>
         <h2>Example NPC</h2>
-        <span>An example NPC using the settings you've provided.</span>
-        <Table id="frx5t6y7"/>
+        <span>An example NPC using the settings you've provided.</span><br/><br/><br/>
+        <span>This is the new table</span>
+        <br/>
+        <Table />
+        <br/><br/><br/><br/>
+        <OldTable id="frx5t6y7"/>
       </div>
       <div className='ruleset-properties'>
         <h2>Ruleset Properties</h2>

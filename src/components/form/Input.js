@@ -106,8 +106,9 @@ const Input = ({
 
   return (
     <>
-    {label === '' ? '' : <label htmlFor={id}>{label}</label>}
+    {label !== '' && type !=='checkbox' && <label className={classes} htmlFor={id}>{label}</label>}
     {inputElement}
+    {label !== '' && type ==='checkbox' && <label className={classes} htmlFor={id}>{label}</label>}
     {inputState.isTouched && !isValid && <span>{errorText}</span>}
     </>
   )
