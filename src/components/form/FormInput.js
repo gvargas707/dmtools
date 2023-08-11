@@ -10,6 +10,8 @@ import './FormInput.css';
  * and accompanying elements commonly seen with an input. Considerations have
  * been made to include. It accepts the following props:
  * - inputArea: A boolean value which defaults to false if no truthy value is provided.
+ *              If false: The component is a normal 'text' input.
+ *              If true: The component is a 'textarea'.
  * - type: The input type to render: 'text', 'number', 'password', 'email', or 'file'.
  * - id: The id property of the input.
  * - classes: Classes to append to the className.
@@ -87,7 +89,7 @@ const FormInput = ({
 
   return (
     <div className={`input-container ${!inputState.isValid && inputState.touched && 'input-invalid'}`}>
-      <label htmlFor={id}>{label}</label>
+      {label === '' ? '' : <label htmlFor={id}>{label}</label>}
       {inputArea
         ? <textarea className={`area-input ${classes}`} id={id} placeholder={placeholder} onChange={changeHandler} />
         : <input className={`${type}-input ${classes}`} id={id} type={type} placeholder={placeholder} onChange={changeHandler} />
