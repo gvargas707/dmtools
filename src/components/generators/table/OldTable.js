@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import './Table.css';
+import './OldTable.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icons } from '../../../utils/icons';
@@ -8,7 +8,7 @@ import { icons } from '../../../utils/icons';
 import FormInput from '../../form/FormInput';
 import { useTable } from '../../../hooks/useTable';
 
-const Table = ({id}) => {
+const OldTable = ({id}) => {
   const [ tableState, inputHandler, checkHandler ] = useTable({})
   
   useEffect(() => {
@@ -100,4 +100,4 @@ const Table = ({id}) => {
   )
 };
 
-export default Table;
+export default OldTable;
