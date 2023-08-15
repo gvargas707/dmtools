@@ -1,4 +1,4 @@
-import React, {useReducer, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 
 /**
  * Custom input element with built in logic for validation in state management.
@@ -18,21 +18,22 @@ const Checkbox = ({
   id,
 }) => {
 
-  const [checked, setIsChecked] = useState(startingChecked)
+  const [isChecked, setIsChecked] = useState(startingChecked)
 
   const clickHandler = event => {
-    setIsChecked(!checked)    
+    setIsChecked(!isChecked)    
   }
 
   useEffect(()=>{
-  },[checked])
+    onInput(id, isChecked)
+  },[id, isChecked])
 
   return (
     <>
       <input type='checkbox' className={classes} id={id} onChange={clickHandler} checked={isChecked}/>
-      {label !== '' && type ==='checkbox' && <label className={classes} htmlFor={id}>{label}</label>}
+      {label !== '' && <label className={classes} htmlFor={id}>{label}</label>}
     </>
   )
 };
 
-export default Input;
+export default Checkbox;

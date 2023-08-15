@@ -42,6 +42,14 @@ const formReducer = (state,action) => {
           //overwrite form validity after checks
           isFormValid: formIsValid
         }
+      case 'TOGGLE':
+        return {
+          ...state,
+          inputs:{
+            ...state.inputs,
+            [action.payload.input]: {isChecked: action.payload.isChecked}
+          }
+        }
       default:
         return state
     }
@@ -85,7 +93,21 @@ const useForm = (
       }
     )
   }, []);
-  return [inputStates, changeHandler]
+
+  const toggleHandler = useCallback((id, isChecked) => {
+    dispatch(
+      {
+        type: 'TOGGLE',
+        payload: {
+          input: id,
+          isChecked,
+        }
+      }
+    )
+  }, []);
+
+
+  return [inputStates, changeHandler, toggleHandler]
 }
 
 export default useForm;

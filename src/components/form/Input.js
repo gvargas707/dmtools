@@ -25,11 +25,6 @@ const inputReducer = (state, action) => {
         ...state,
         isTouched: true
       }
-    case 'TOGGLE':
-      return {
-        ...state,
-        isChecked: !state.isChecked
-      }
     default:
       return state
   }
@@ -42,7 +37,6 @@ const inputReducer = (state, action) => {
  * @param {number} [rows=3] - The number of rows to render if the input is a textarea. Default is 3.
  * @param {string} [classes=''] - The CSS string to provide for the input component's className. Empty by default.
  * @param {string} [startingValue=''] - The starting value of the input. Empty by default.
- * @param {string} [startingChecked=false] - The starting toggle state of the input. Empty by default. Used for checkbox.
  * @param {boolean} [startingValidity=false] - The value of the input's starting validity. False by default.
  * @param {string} [label=''] - The value of the label element. Empty by default. Does not render if empty.
  * @param {string} [placeholder=''] - The value of the placeholder to include in input. Empty by default.
@@ -58,7 +52,6 @@ const Input = ({
   classes = '',
   startingValue = '',
   startingValidity = false,
-  startingChecked = false,
   label = '',
   placeholder = '',
   validators = [],
@@ -71,7 +64,6 @@ const Input = ({
     value: startingValue,
     isTouched: false,
     isValid: startingValidity,
-    ...(type === 'checkbox' ? { isChecked: startingChecked } : {})
   })
 
   const changeHandler = event => {
@@ -82,33 +74,25 @@ const Input = ({
     dispatch({type:'TOUCH'})
   }
 
-  const clickHandler = event => {
-    dispatch({type:'TOGGLE'})
-  }
-
-  const {value, isValid, isChecked} = inputState
+  const {value, isValid} = inputState
 
   useEffect(()=>{
     onInput(id, value, isValid)
-  },[id, value, isValid, isChecked, onInput])
+  },[id, value, isValid, onInput])
 
   let inputElement
   switch (type) {
     case 'area':
-      inputElement = <textarea className={classes} id={id} placeholder={placeholder} onChange={changeHandler} onBlur={touchHandler} rows={rows}/>
-      break;
-    case 'checkbox':
-      inputElement = <input type='checkbox' className={classes} id={id} onChange={clickHandler} checked={isChecked}/>
+      inputElement = <textarea className={classes} id={id} placeholder={placeholder} onChange={changeHandler} onBlur={touchHandler} rows={rows} value={value}/>
       break;
     default:
-      inputElement = <input type={type} className={classes} id={id} placeholder={placeholder} onChange={changeHandler} onBlur={touchHandler}/>
+      inputElement = <input type={type} className={classes} id={id} placeholder={placeholder} onChange={changeHandler} onBlur={touchHandler} value={value}/>
   }
 
   return (
     <>
-    {label !== '' && type !=='checkbox' && <label className={classes} htmlFor={id}>{label}</label>}
+    {label !== '' && <label className={classes} htmlFor={id}>{label}</label>}
     {inputElement}
-    {label !== '' && type ==='checkbox' && <label className={classes} htmlFor={id}>{label}</label>}
     {inputState.isTouched && !isValid && <span>{errorText}</span>}
     </>
   )
