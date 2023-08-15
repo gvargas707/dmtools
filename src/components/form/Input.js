@@ -98,7 +98,7 @@ const Input = ({
       inputElement = <textarea className={classes} id={id} placeholder={placeholder} onChange={changeHandler} onBlur={touchHandler} rows={rows}/>
       break;
     case 'checkbox':
-      inputElement = <input type='checkbox' className={classes} id={id} onClick={clickHandler} checked={isChecked}/>
+      inputElement = <input type='checkbox' className={classes} id={id} onChange={clickHandler} checked={isChecked}/>
       break;
     default:
       inputElement = <input type={type} className={classes} id={id} placeholder={placeholder} onChange={changeHandler} onBlur={touchHandler}/>

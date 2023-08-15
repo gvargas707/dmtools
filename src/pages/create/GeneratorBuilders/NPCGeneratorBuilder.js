@@ -8,6 +8,56 @@ import { tableList } from "../../../data/lists/faerunLists";
 
 import './NPCGeneratorBuilder.css';
 
+const tableData = {
+  title: '',
+  description: '',
+  properties: {
+    rollColumns: false,
+  },
+  rollFormula: '',
+  columnTitles: [
+    "Weapons",
+    "Armor",
+    "Alchemy",
+    "Currency"
+  ],
+  entries: [
+    {
+      ranges: [1,2],
+      weight: 2,
+      columns: [
+        "Longsword",
+        "Leather Armor",
+        "Ring of Protection",
+        "Potion of Healing",
+        "250gp"
+      ]
+    },
+    {
+      ranges: [3,4],
+      weight: 2,
+      columns: [
+        "Dagger",
+        "Padded",
+        "Amulet of Poison Resistance",
+        "Oil of Sharpness",
+        "100 sp",
+      ]
+    },
+    {
+      ranges: [5,6],
+      weight: 2,
+      columns: [
+        "Longbow",
+        "Chainmail",
+        "Boots of Striding",
+        "Flask of Fire",
+        "80 cp"
+      ]
+    }
+  ]
+}
+
 const NPCGeneratorBuilder = () => {
 
   return (
@@ -26,7 +76,6 @@ const NPCGeneratorBuilder = () => {
         <br/>
         <Table />
         <br/><br/><br/><br/>
-        <OldTable id="frx5t6y7"/>
       </div>
       <div className='ruleset-properties'>
         <h2>Ruleset Properties</h2>

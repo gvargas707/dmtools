@@ -63,8 +63,10 @@ const formReducer = (state,action) => {
  * @returns {[Object, function]} - Contains the state of the form and a function for managing that state from other components.
  */
 const useForm = (
-  inputs,
-  isFormValid = false
+  {
+    inputs,
+    isFormValid = false
+  }
 ) => {
   const [inputStates, dispatch] = useReducer(formReducer, {
     inputs,
@@ -83,7 +85,6 @@ const useForm = (
       }
     )
   }, []);
-
   return [inputStates, changeHandler]
 }
 
