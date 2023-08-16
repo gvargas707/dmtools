@@ -74,7 +74,7 @@ const NPCGeneratorBuilder = () => {
         <span>An example NPC using the settings you've provided.</span><br/><br/><br/>
         <span>This is the new table</span>
         <br/>
-        <Table />
+        < Table />
         <br/><br/><br/><br/>
       </div>
       <div className='ruleset-properties'>

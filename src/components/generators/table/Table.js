@@ -8,18 +8,37 @@ import Button from '../../form/Button';
 
 import './Table.css'
 
+
+const tableReducer = (state, action) => {
+  switch (action){
+    default:
+      return state
+  }
+}
+
 const Table = ({
-  tableID = 'default'
+  tableID = 'default',
+  tableData = {
+    title: '',
+    description: '',
+    properties: {
+      rollColumns: false,
+    },
+    rollFormula: '1d1',
+    columnTitles: ['Unnamed Column'],
+    entries: [
+      {
+        ranges: [1,1],
+        weight: 1,
+        columns: ['Unnamed Result']
+      }
+    ]
+  }
 }) => {
 
-  // [tableState, dispatch] = useReducer(tableReducer, {
-  //   tableColumns: 1,
-  //   tableRows: 1,
-  //   rollColumns: false,
-  //   tableData: {}
-  // })
+  const [tableState, dispatch] = useReducer(tableReducer, tableData)
 
-  const [tableState, changeHandler, toggleHandler] = useForm(
+  const [inputStates, changeHandler, toggleHandler] = useForm(
     {
       [`${tableID}title`]: {
         value: '',
@@ -33,58 +52,40 @@ const Table = ({
         isChecked: false
       },
       [`${tableID}rollFormula`]: {
-        value: '1d6',
+        value: '',
         isValid: false
       },
-      rollFormula: {
-        value: '',
-        isValid: true,
-      }
     },
     false
   )
 
-  
+  const inputHandler = (event) => {
+    changeHandler
+  }
 
-  // try {
-  //   const rollFormula = tableState && tableState[`${tableID}rollFormula`].value;
-  // } catch (error) {
-  //   console.log(error)
-  //   console.log(tableState[`${tableID}rollFormula`].value)
-  // }
-
-  //const rollFormula = tableState.inputs && tableState[`${tableID}rollFormula`].value;
-  //const rollFormula = tableState[`inputs`][`${tableID}rollFormula`] ? tableState.inputs[`${tableID}rollFormula`].value : undefined;
-
-  // if (tableState.inputs && tableState.inputs[`${tableID}rollFormula`]){
-  //   const rollFormula = tableState.inputs[`${tableID}rollFormula`].value
-  // }
-
-
-  //const rollFormula = tableState.inputs && tableState.inputs.rollFormula ? tableState.inputs.rollFormula.value : '';
-  const rollFormula = tableState.inputs && tableState.inputs[`${tableID}rollFormula`] ? tableState.inputs[`${tableID}rollFormula`].value : '';
+  //const rollFormula = inputStates.inputs && inputStates.inputs[`${tableID}rollFormula`] ? inputStates.inputs[`${tableID}rollFormula`].value : '';
+  const { rollFormula } = tableState
 
   useEffect(() => {
-    console.log(tableState)
-  }, [tableState])
+    console.log(inputStates)
+  }, [inputStates])
 
 
   return (
     <div className='table-container'>
       <form>
-        <Input classes='table-container__title' id={`${tableID}Title`} placeholder='Name' onInput={changeHandler}/>
+        <Input classes='table-container__title' id={`${tableID}Title`} placeholder='Name' onInput={changeHandler} />
         <Input type='area' classes='table-container__description' id={`${tableID}Description`} label="Description" onInput={changeHandler}/>
         <div className='properties'>
           <Checkbox classes='properties__checkbox' id={`${tableID}RollColumns`} label="Roll Across Columns" onInput={toggleHandler}/>
         </div>
         <div className='actions'>
-          <Input classes='actions__rollFormula' id={`${tableID}rollFormula`} label="Table Roll Formula" placeholder='e.g: 3d6' startingValue='1d8' onInput={changeHandler}/>
+          <Input classes='actions__rollFormula' id={`${tableID}rollFormula`} label="Table Roll Formula" placeholder='e.g: 3d6' onInput={changeHandler} startingValue={rollFormula}/>
         </div>
         <div className='entries'>
           <table>
             <thead>
               <tr>
-                {/* <th>{rollFormula}<br/>Range</th> */}
                 <th>{rollFormula}</th>
                 <th>Weight</th>
               </tr>
