@@ -59,16 +59,12 @@ const Table = ({
     false
   )
 
-  const inputHandler = (event) => {
-    changeHandler
-  }
-
   //const rollFormula = inputStates.inputs && inputStates.inputs[`${tableID}rollFormula`] ? inputStates.inputs[`${tableID}rollFormula`].value : '';
   const { rollFormula } = tableState
 
   useEffect(() => {
     console.log(inputStates)
-  }, [inputStates])
+  }, [inputStates.inputs])
 
 
   return (

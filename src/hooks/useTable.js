@@ -2,58 +2,49 @@ import React, { useReducer, useCallback } from 'react';
 
 const tableReducer = (state, action) => {
   switch (action.type) {
-    case 'ADD_COLUMN':
-      return {
-        ...state,
-        entries: [...state.entries, action.payload],
-      }
     case 'UPDATE':
-      return {
-        ...state,
-        ...action.payload
-      }
-    case 'DELETE_ROW':
-      return {
-        ...state,
-        entries: state.entries.filter((e,index) => action.payload !== index)
-      }
-    case 'DELETE_COLUMN':
-      for (let i = 0; i < state.entries.length ; i++) {
-        if (state.entries[0]?.columns.length == 1){
-          return state;
-        }
-      }
-      
-      return {
-        ...state,
-        entries: state.entries.map(e => ({
-          ...e,
-          columns: e.columns.slice(0,e.columns.length-1)
-        }))
-      }
+      let isTableValid = true
     default:
       return state;
   }
 };
 
-export const useTable = (table) => {
-
-  const [tableState, dispatch] = useReducer(tableReducer, {
-    title: table.title || '',
-    description: table.description || '',
-    properties: table.properties || {
-      rollColumns: false,
+export const useTable = ( tableData = {
+  title : {
+    value: '',
+    isValid: false,
+  },
+  description: {
+    value: '',
+    isValid: false
+  },
+  properties: {
+    rollColumns: false,
+  },
+  rollFormula: {
+    value: '1d1',
+    isValid: true,
+  },
+  columnTitles: [
+    {value: 'Unnamed Column', isValid: true}
+  ],
+  entries: [
+    {
+      ranges: [
+        {value: 1, isValid: true},
+        {value: 1, isValid: true},
+      ],
+      weight: {value: 1, isValid: true},
+      results: [
+        {value: 'Unnamed Result', isValid: true}
+      ]
     },
-    rollFormula: table.rollFormula || '',
-    entries: table.entries || [
-      {
-        ranges: [],
-        weight: 0,
-        columns: ['']
-      }
-    ],
-    history: []
-  })
+  ],
+  history: [],
+  isValid: false
+}) => {
+
+  const [tableState, dispatch] = useReducer(tableReducer, tableData)
 
   const inputHandler = useCallback((event) => {
     dispatch({
@@ -64,19 +55,16 @@ export const useTable = (table) => {
     })
   })
 
-  const checkHandler = useCallback((event => {
-    dispatch({
-      type: 'UPDATE',
-      payload: {
-        properties: {
-          [event.target.id] : event.target.checked
-        }
-      }
-    })
-  }))
+  // const checkHandler = useCallback((event => {
+  //   dispatch({
+  //     type: 'UPDATE',
+  //     payload: {
+  //       properties: {
+  //         [event.target.id] : event.target.checked
+  //       }
+  //     }
+  //   })
+  // }))
 
-
-
-
-  return [tableState, inputHandler, checkHandler]
+  return [tableState, inputHandler]
 }
