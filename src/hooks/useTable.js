@@ -1,9 +1,21 @@
 import React, { useReducer, useCallback } from 'react';
 
+
 const tableReducer = (state, action) => {
   switch (action.type) {
-    case 'UPDATE':
-      let isTableValid = true
+    case 'UPDATE_FIXED':
+      return {
+        ...state,
+        [action.payload.input] : {value: action.payload.value, isValid: action.payload.isValid}
+      }
+    case 'UPDATE_PROPERTIES':
+      return {
+        ...state,
+        properties: {
+          ...state.properties,
+          [action.payload.input] : action.payload.isChecked
+        }
+      }
     default:
       return state;
   }
@@ -46,14 +58,36 @@ export const useTable = ( tableData = {
 
   const [tableState, dispatch] = useReducer(tableReducer, tableData)
 
-  const inputHandler = useCallback((event) => {
-    dispatch({
-      type: 'UPDATE',
-      payload: {
-        [event.target.id] : event.target.value
-      }
-    })
+  const changeHandler = useCallback(({id, value, isValid, isChecked} = {}) => {
+    if (id !== 'properties'){
+      dispatch({
+        type: 'UPDATE_FIXED',
+        payload: {
+          input: id,
+          value,
+          isValid
+        }
+      })
+    }
+    if (id === 'properties'){
+      dispatch({
+        type: 'UPDATE_PROPERTIES',
+        payload: {
+          input: id,
+          isChecked
+        }
+      })
+    }
   })
+
+  // const inputHandler = useCallback((event) => {
+  //   dispatch({
+  //     type: 'UPDATE',
+  //     payload: {
+  //       [event.target.id] : event.target.value
+  //     }
+  //   })
+  // })
 
   // const checkHandler = useCallback((event => {
   //   dispatch({

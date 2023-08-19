@@ -19,20 +19,38 @@ const tableReducer = (state, action) => {
 const Table = ({
   tableID = 'default',
   tableData = {
-    title: '',
-    description: '',
+    title : {
+      value: '',
+      isValid: false,
+    },
+    description: {
+      value: '',
+      isValid: false
+    },
     properties: {
       rollColumns: false,
     },
-    rollFormula: '1d1',
-    columnTitles: ['Unnamed Column'],
+    rollFormula: {
+      value: '1d1',
+      isValid: true,
+    },
+    columnTitles: [
+      {value: 'Unnamed Column', isValid: true}
+    ],
     entries: [
       {
-        ranges: [1,1],
-        weight: 1,
-        columns: ['Unnamed Result']
-      }
-    ]
+        ranges: [
+          {value: 1, isValid: true},
+          {value: 1, isValid: true},
+        ],
+        weight: {value: 1, isValid: true},
+        results: [
+          {value: 'Unnamed Result', isValid: true}
+        ]
+      },
+    ],
+    history: [],
+    isValid: false
   }
 }) => {
 
