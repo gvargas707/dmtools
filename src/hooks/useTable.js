@@ -11,55 +11,20 @@ const tableReducer = (state, action) => {
     case 'UPDATE_PROPERTIES':
       return {
         ...state,
-        properties: {
-          ...state.properties,
-          [action.payload.input] : action.payload.isChecked
-        }
+        [action.payload.input] : action.payload.isChecked
       }
     default:
       return state;
   }
 };
 
-export const useTable = ( tableData = {
-  title : {
-    value: '',
-    isValid: false,
-  },
-  description: {
-    value: '',
-    isValid: false
-  },
-  properties: {
-    rollColumns: false,
-  },
-  rollFormula: {
-    value: '1d1',
-    isValid: true,
-  },
-  columnTitles: [
-    {value: 'Unnamed Column', isValid: true}
-  ],
-  entries: [
-    {
-      ranges: [
-        {value: 1, isValid: true},
-        {value: 1, isValid: true},
-      ],
-      weight: {value: 1, isValid: true},
-      results: [
-        {value: 'Unnamed Result', isValid: true}
-      ]
-    },
-  ],
-  history: [],
-  isValid: false
-}) => {
+export const useTable = ( tableData ) => {
 
   const [tableState, dispatch] = useReducer(tableReducer, tableData)
 
-  const changeHandler = useCallback(({id, value, isValid, isChecked} = {}) => {
-    if (id !== 'properties'){
+  const changeHandler = useCallback((input) => {
+    const {id, value, isValid, isChecked, type} = input
+    if (type !== 'checkbox'){
       dispatch({
         type: 'UPDATE_FIXED',
         payload: {
@@ -69,7 +34,7 @@ export const useTable = ( tableData = {
         }
       })
     }
-    if (id === 'properties'){
+    if (type === 'checkbox'){
       dispatch({
         type: 'UPDATE_PROPERTIES',
         payload: {
@@ -78,27 +43,9 @@ export const useTable = ( tableData = {
         }
       })
     }
-  })
+  },[])
 
-  // const inputHandler = useCallback((event) => {
-  //   dispatch({
-  //     type: 'UPDATE',
-  //     payload: {
-  //       [event.target.id] : event.target.value
-  //     }
-  //   })
-  // })
-
-  // const checkHandler = useCallback((event => {
-  //   dispatch({
-  //     type: 'UPDATE',
-  //     payload: {
-  //       properties: {
-  //         [event.target.id] : event.target.checked
-  //       }
-  //     }
-  //   })
-  // }))
-
-  return [tableState, inputHandler]
+  return [tableState, changeHandler]
 }
+
+export default useTable;

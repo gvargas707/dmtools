@@ -41,3 +41,9 @@ div.actions {
 label.actions__rollFormula {
   margin-right: .75em;
 }
+
+div.entries {
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0.5em;
+}

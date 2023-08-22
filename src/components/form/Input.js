@@ -78,6 +78,7 @@ const Input = ({
 
   useEffect(()=>{
     onInput(id, value, isValid)
+    onInput({id, value, isValid, type})
   },[id, value, isValid, onInput])
 
   let inputElement

@@ -25,7 +25,11 @@ const Checkbox = ({
   }
 
   useEffect(()=>{
-    onInput(id, isChecked)
+    onInput({
+      id,
+      isChecked,
+      type: 'checkbox'
+    })
   },[id, isChecked])
 
   return (

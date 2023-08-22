@@ -11,9 +11,9 @@ import { useTable } from '../../../hooks/useTable';
 const OldTable = ({id}) => {
   const [ tableState, inputHandler, checkHandler ] = useTable({})
   
-  useEffect(() => {
-    console.log(tableState)
-  },[tableState])
+  // useEffect(() => {
+  //   console.log(tableState)
+  // },[tableState])
 
   return (
     <div className='generator-table'>

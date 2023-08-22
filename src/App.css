@@ -6,3 +6,7 @@ body {
 div.main-container {
   display: flex;
 }
+
+div.main {
+  box-sizing: content-box;
+}

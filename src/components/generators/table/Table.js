@@ -1,6 +1,7 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useCallback, useEffect, useReducer } from 'react';
 
 import useForm from '../../../hooks/useForm';
+import useTable from '../../../hooks/useTable';
 
 import Input from '../../form/Input';
 import Checkbox from '../../form/Checkbox';
@@ -8,34 +9,24 @@ import Button from '../../form/Button';
 
 import './Table.css'
 
-
-const tableReducer = (state, action) => {
-  switch (action){
-    default:
-      return state
-  }
-}
-
 const Table = ({
   tableID = 'default',
   tableData = {
-    title : {
+    [`${tableID}Title`] : {
       value: '',
       isValid: false,
     },
-    description: {
+    [`${tableID}Description`]: {
       value: '',
       isValid: false
     },
-    properties: {
-      rollColumns: false,
-    },
-    rollFormula: {
+    [`${tableID}RollColumns`]: false,
+    [`${tableID}RollFormula`]: {
       value: '1d1',
       isValid: true,
     },
-    columnTitles: [
-      {value: 'Unnamed Column', isValid: true}
+    [`${tableID}ColumnTitles`]: [
+      { [`${tableID}C1`]:{value: 'Unnamed Column', isValid: true}}
     ],
     entries: [
       {
@@ -54,35 +45,38 @@ const Table = ({
   }
 }) => {
 
-  const [tableState, dispatch] = useReducer(tableReducer, tableData)
+  // const [tableState, dispatch] = useReducer(tableReducer, tableData)
 
-  const [inputStates, changeHandler, toggleHandler] = useForm(
-    {
-      [`${tableID}title`]: {
-        value: '',
-        isValid: false
-      },
-      [`${tableID}description`]: {
-        value: '',
-        isValid: false
-      },
-      [`${tableID}rollColumns`]: {
-        isChecked: false
-      },
-      [`${tableID}rollFormula`]: {
-        value: '',
-        isValid: false
-      },
-    },
-    false
-  )
+  // const [inputStates, changeHandler, toggleHandler] = useForm(
+  //   {
+  //     [`${tableID}title`]: {
+  //       value: '',
+  //       isValid: false
+  //     },
+  //     [`${tableID}description`]: {
+  //       value: '',
+  //       isValid: false
+  //     },
+  //     [`${tableID}rollColumns`]: {
+  //       isChecked: false
+  //     },
+  //     [`${tableID}rollFormula`]: {
+  //       value: '',
+  //       isValid: false
+  //     },
+  //   },
+  //   false
+  // )
 
   //const rollFormula = inputStates.inputs && inputStates.inputs[`${tableID}rollFormula`] ? inputStates.inputs[`${tableID}rollFormula`].value : '';
-  const { rollFormula } = tableState
+
+  const [ tableState, changeHandler ] = useTable(tableData)
+
+  const rollFormula = tableState[`${tableID}RollFormula`].value
+  const tableColumns = tableState[`${tableID}ColumnTitles`]
 
   useEffect(() => {
-    console.log(inputStates)
-  }, [inputStates.inputs])
+  }, [tableState])
 
 
   return (
@@ -91,17 +85,20 @@ const Table = ({
         <Input classes='table-container__title' id={`${tableID}Title`} placeholder='Name' onInput={changeHandler} />
         <Input type='area' classes='table-container__description' id={`${tableID}Description`} label="Description" onInput={changeHandler}/>
         <div className='properties'>
-          <Checkbox classes='properties__checkbox' id={`${tableID}RollColumns`} label="Roll Across Columns" onInput={toggleHandler}/>
+          <Checkbox classes='properties__checkbox' id={`${tableID}RollColumns`} label="Roll Across Columns" onInput={changeHandler}/>
         </div>
         <div className='actions'>
-          <Input classes='actions__rollFormula' id={`${tableID}rollFormula`} label="Table Roll Formula" placeholder='e.g: 3d6' onInput={changeHandler} startingValue={rollFormula}/>
+          <Input classes='actions__rollFormula' id={`${tableID}RollFormula`} label="Table Roll Formula" placeholder='e.g: 3d6' onInput={changeHandler} startingValue={rollFormula} />
         </div>
         <div className='entries'>
           <table>
             <thead>
               <tr>
+                <th></th>
                 <th>{rollFormula}</th>
                 <th>Weight</th>
+                {/* {tableColumns && tableColumns.map((c, idx) => <th><Input id={c.keys[0]} startingvalue={c.value} startingValidity={c.isValid} /></th>)} */}
+                {tableColumns && tableColumns.map((c, idx) => console.log(c))}
               </tr>
             </thead>
           </table>

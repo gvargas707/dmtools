@@ -75,6 +75,10 @@ const NPCGeneratorBuilder = () => {
         <span>This is the new table</span>
         <br/>
         < Table />
+        <br />
+        <br />
+        <br />
+        < OldTable />
         <br/><br/><br/><br/>
       </div>
       <div className='ruleset-properties'>
