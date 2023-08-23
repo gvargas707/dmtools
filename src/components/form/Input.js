@@ -84,7 +84,6 @@ const Input = ({
   useEffect(()=>{
     //onInput(id, value, isValid)
     const stateId = extractId(id)
-    console.log(stateId)
     onInput({stateId, value, isValid, type})
   },[id, value, isValid, onInput])
 

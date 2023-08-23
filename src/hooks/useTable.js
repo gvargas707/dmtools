@@ -1,6 +1,7 @@
 import React, { useReducer, useCallback } from 'react';
 
-const checkIsValid = (obj) => {
+const checkIsValid = (obj, payload) => {
+
   if (typeof obj !== 'object' || obj === null){
     return true;
   }
@@ -10,7 +11,10 @@ const checkIsValid = (obj) => {
   }
 
   for (let item in obj){
-    if (!checkIsValid(obj[item])){
+    if (payload && payload.hasOwnProperty('isValid') && Object.keys(obj).includes(payload.input)){
+      return payload.isValid
+    }
+    if (!checkIsValid(obj[item], payload)){
       return false;
     }
   }
@@ -21,15 +25,26 @@ const checkIsValid = (obj) => {
 const tableReducer = (state, action) => {
   switch (action.type) {
     case 'UPDATE':
-      let isTableValid = true
-      //console.log(state)
-      console.log(action)
-      // console.log('----------')
-      // for (let item in state){
-      //   console.log(`${item}: ${typeof state[item]}`)
-      //   //isTableValid = isTableValid && checkIsValid(state[item])
+      let updatedState = state
+      // if (action.payload.hasOwnProperty('isValid')){
+      //   let isTableValid = true
+      //   isTableValid = checkIsValid(state,action.payload)
+
       // }
-      // console.log('----------')
+      // if (action.payload.hasOwnProperty('isChecked')){
+
+      // }
+
+
+      // return {
+      //   ...state,
+      //   config: {
+      //     ...state.config,
+      //     [action.payload.input] : {
+            
+      //     }
+      //   }
+      // }
       return state
     case 'UPDATE_FIXED':
       console.log(action)

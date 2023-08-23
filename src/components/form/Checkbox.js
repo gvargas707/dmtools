@@ -30,7 +30,6 @@ const Checkbox = ({
   }
   useEffect(()=>{
     const stateId = extractId(id)
-    console.log(stateId)
     onInput({
       stateId,
       isChecked,

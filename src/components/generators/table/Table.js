@@ -57,7 +57,7 @@ const Table = ({
       }
     ],
     history: [],
-    isValid: false
+    tableIsValid: false
   },
   // tableData = {
   //   [`${tableID}Title`] : {
@@ -100,7 +100,6 @@ const Table = ({
   // const tableColumns = tableState[`${tableID}ColumnTitles`]
 
   useEffect(() => {
-    // console.log(tableColumns)
     //console.log(tableState)
   }, [tableState])
 
