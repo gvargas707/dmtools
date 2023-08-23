@@ -24,9 +24,15 @@ const Checkbox = ({
     setIsChecked(!isChecked)    
   }
 
+  const extractId = (id) => {
+    const IdSections = id.split('-');
+    return IdSections.length > 1 ? IdSections[1] : id;
+  }
   useEffect(()=>{
+    const stateId = extractId(id)
+    console.log(stateId)
     onInput({
-      id,
+      stateId,
       isChecked,
       type: 'checkbox'
     })

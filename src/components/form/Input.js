@@ -76,8 +76,15 @@ const Input = ({
 
   const {value, isValid} = inputState
 
+  const extractId = (id) => {
+    const IdSections = id.split('-');
+    return IdSections.length > 1 ? IdSections[1] : id;
+  }
+
   useEffect(()=>{
-    onInput(id, value, isValid)
+    //onInput(id, value, isValid)
+    const stateId = extractId(id)
+    console.log(stateId)
     onInput({id, value, isValid, type})
   },[id, value, isValid, onInput])
 

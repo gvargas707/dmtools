@@ -24,7 +24,7 @@ div.table-container form label[for*='description']{
   margin-bottom: 0.3em;
 }
 
-div.properties {
+section.properties {
   padding: 0.25em;
   margin: 0.5em 0;
 }
@@ -33,7 +33,7 @@ label.properties__checkbox {
   font-size: 1.05em;
 }
 
-div.actions {
+section.actions {
   padding: 0.2em;
   margin: 0.5em 0;
 }
@@ -42,7 +42,7 @@ label.actions__rollFormula {
   margin-right: .75em;
 }
 
-div.entries {
+section.entries {
   border: 1px solid gray;
   border-radius: 5px;
   padding: 0.5em;
