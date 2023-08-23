@@ -85,7 +85,7 @@ const Input = ({
     //onInput(id, value, isValid)
     const stateId = extractId(id)
     console.log(stateId)
-    onInput({id, value, isValid, type})
+    onInput({stateId, value, isValid, type})
   },[id, value, isValid, onInput])
 
   let inputElement

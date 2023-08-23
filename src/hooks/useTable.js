@@ -52,11 +52,11 @@ export const useTable = ( tableData ) => {
   const [tableState, dispatch] = useReducer(tableReducer, tableData)
 
   const changeHandler = useCallback((input) => {
-    const {id, value, isValid, isChecked, type} = input
+    const {stateId, value, isValid, isChecked, type} = input
     dispatch({
       type: 'UPDATE',
       payload: {
-        input: id,
+        input: stateId,
         value,
         isValid,
         isChecked,
