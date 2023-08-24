@@ -20,9 +20,11 @@ const Table = ({
         value: '',
         isValid: false
       },
-      rollColumns: false,
+      rollColumns: {
+        isToggled: false
+      },
       rollFormula: {
-        valeu: '1d2',
+        value: '1d2',
         isValid: true
       },
     },
@@ -99,6 +101,10 @@ const Table = ({
   // const rollFormula = tableState[`${tableID}RollFormula`].value
   // const tableColumns = tableState[`${tableID}ColumnTitles`]
 
+  const rollFormula  = tableState.config.rollFormula.value
+  const tableColumns = tableState.columnTitles
+
+
   useEffect(() => {
     //console.log(tableState)
   }, [tableState])
@@ -113,15 +119,18 @@ const Table = ({
           <Checkbox classes='properties__checkbox' id={`${tableID}-rollColumns`} label="Roll Across Columns" onInput={changeHandler}/>
         </section>
         <section className='actions'>
-          <Input classes='actions__rollFormula' id={`${tableID}-rollFormula`} label="Table Roll Formula" placeholder='e.g: 3d6' onInput={changeHandler} startingValue='1d4' />
+          <Input classes='actions__rollFormula' id={`${tableID}-rollFormula`} label="Table Roll Formula" placeholder='e.g: 3d6' onInput={changeHandler} startingValue={rollFormula} />
         </section>
         <section className='entries'>
           <table>
             <thead>
               <tr>
-                <th></th>
-                <th>1d4</th>
-                <th>Weight</th>
+                <th className='sz1'></th>
+                <th className='sz2'>{rollFormula}</th>
+                <th className='sz1'>Weight</th>
+                {tableColumns.map((c,idx) =>
+                  <th className='sz4'><Input key={`${tableID}-${c.id}`} id={`${tableID}-${c.id}`} startingValue={c.value} startingValiditiy={c.isValid} /></th>
+                )}
                 {/* Iterate over columnTitles in state and create an Input object with the same ID as the key's name and the starting value of its value.
                 {tableColumns && tableColumns.map((c, idx) => 
                   <th><Input id={Object.keys(c)[0]} startingValue={Object.values(c)[0].value} onInput={changeHandler}/></th>

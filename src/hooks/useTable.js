@@ -1,6 +1,6 @@
 import React, { useReducer, useCallback } from 'react';
 
-const checkIsValid = (obj, payload) => {
+const checkIsValid = (obj, action) => {
 
   if (typeof obj !== 'object' || obj === null){
     return true;
@@ -11,10 +11,10 @@ const checkIsValid = (obj, payload) => {
   }
 
   for (let item in obj){
-    if (payload && payload.hasOwnProperty('isValid') && Object.keys(obj).includes(payload.input)){
-      return payload.isValid
+    if (action && action.payload.hasOwnProperty('isValid') && Object.keys(obj).includes(action.input)){
+      return action.payload.isValid
     }
-    if (!checkIsValid(obj[item], payload)){
+    if (!checkIsValid(obj[item], action)){
       return false;
     }
   }
@@ -22,40 +22,27 @@ const checkIsValid = (obj, payload) => {
   return true
 }
 
+
 const tableReducer = (state, action) => {
+  console.log(action)
+  let tableIsValid = checkIsValid(state, action)
   switch (action.type) {
     case 'UPDATE':
-      let updatedState = state
-      // if (action.payload.hasOwnProperty('isValid')){
-      //   let isTableValid = true
-      //   isTableValid = checkIsValid(state,action.payload)
-
-      // }
-      // if (action.payload.hasOwnProperty('isChecked')){
-
-      // }
-
-
-      // return {
-      //   ...state,
-      //   config: {
-      //     ...state.config,
-      //     [action.payload.input] : {
-            
-      //     }
-      //   }
-      // }
-      return state
-    case 'UPDATE_FIXED':
-      console.log(action)
+      //return state
+    case 'UPDATE_CONFIG':
       return {
         ...state,
-        [action.payload.input] : {value: action.payload.value, isValid: action.payload.isValid}
-      }
-    case 'UPDATE_PROPERTIES':
-      return {
-        ...state,
-        [action.payload.input] : action.payload.isChecked
+        config: {
+          ...state.config,
+          [action.input] : {...action.payload}
+        },
+        columnTitles: [
+          ...state.columnTitles
+        ],
+        entries: [
+          ...state.entries
+        ],
+        tableIsValid
       }
     default:
       return state;
@@ -67,17 +54,28 @@ export const useTable = ( tableData ) => {
   const [tableState, dispatch] = useReducer(tableReducer, tableData)
 
   const changeHandler = useCallback((input) => {
-    const {stateId, value, isValid, isChecked, type} = input
-    dispatch({
-      type: 'UPDATE',
-      payload: {
-        input: stateId,
-        value,
-        isValid,
-        isChecked,
-        type
+    const {stateId, value, isValid, isChecked} = input
+    const properties = {value,isValid,isChecked}
+    const payload = {}
+    for (let property in properties){
+      if (properties[property] !== undefined){
+        payload[property] = properties[property]
       }
+    }
+    dispatch({
+      type: 'UPDATE_CONFIG',
+      input: stateId,
+      payload
     })
+    // dispatch({
+    //   type: 'UPDATE_CONFIG',
+    //   input: stateId,
+    //   payload: {
+    //     value,
+    //     isValid,
+    //     isToggled: isChecked
+    //   }
+    // })
     // if (type !== 'checkbox'){
     //   dispatch({
     //     type: 'UPDATE_FIXED',
