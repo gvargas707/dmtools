@@ -56,7 +56,7 @@ const Input = ({
   placeholder = '',
   validators = [],
   errorText = '',
-  onInput = () => {},
+  onInput = () => {console.log(id)},
   id,
 }) => {
 
