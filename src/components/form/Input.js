@@ -48,6 +48,8 @@ const inputReducer = (state, action) => {
  */
 const Input = ({
   type = 'text',
+  size = undefined,
+  maxLength = undefined,
   rows = 3,
   classes = '',
   startingValue = '',
@@ -93,7 +95,7 @@ const Input = ({
       inputElement = <textarea className={classes} id={id} placeholder={placeholder} onChange={changeHandler} onBlur={touchHandler} rows={rows} value={value}/>
       break;
     default:
-      inputElement = <input type={type} className={classes} id={id} placeholder={placeholder} onChange={changeHandler} onBlur={touchHandler} value={value}/>
+      inputElement = <input size={size && size} maxLength={maxLength && maxLength} type={type} className={classes} id={id} placeholder={placeholder} onChange={changeHandler} onBlur={touchHandler} value={value}/>
   }
 
   return (

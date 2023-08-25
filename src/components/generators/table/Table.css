@@ -50,41 +50,44 @@ section.entries {
 
 section.entries table {
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
-section.entries table tr {
-  display:flex;
-  flex-grow: 1;
-}
-
-section.entries table tr td.sz1,
-section.entries table tr th.sz1 {
-  flex: 1
-}
-
-section.entries table tr td.sz2,
-section.entries table tr th.sz2 {
-  flex: 2
-} 
-
-section.entries table tr td.sz3,
-section.entries table tr th.sz3 {
-  flex: 3
-} 
-
-section.entries table tr td.sz4,
-section.entries table tr th.sz4 { 
-  flex: 4
-} 
-
-section.entries th {
-  padding: 0.1em;
-}
-
-section.entries table th input {
-  width: 80%;
+section.entries table th,
+section.entries table td {
   text-align: center;
-  font-weight: bold;
+  border:1px solid lightgray;
+  padding: 0.25em;
+}
+
+section.entries table th.col-xs,
+section.entries table td.col-xs {
+  width: 2%;
+}
+
+section.entries table th.col-sm,
+section.entries table td.col-sm {
+  width: 4%;
+}
+
+
+section.entries table th.col-med,
+section.entries table td.col-med {
+  width: 8%;
+}
+
+section.entries table input.full,
+section.entries table textarea.full {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+section.entries table textarea {
+  resize: none;
+}
+
+section.entries table input.center,
+section.entries table textarea.center {
+  text-align: center;
 }

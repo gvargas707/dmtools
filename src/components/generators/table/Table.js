@@ -5,6 +5,9 @@ import useTable from '../../../hooks/useTable';
 import Input from '../../form/Input';
 import Checkbox from '../../form/Checkbox';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icons } from '../../../utils/icons';
+
 import './Table.css'
 
 const Table = ({
@@ -41,8 +44,8 @@ const Table = ({
         ],
         weight: {value: 1, isValid: true},
         results: [
-          {value: 'Unnamed Result 1', isValid: true},
-          {value: 'Unnamed Result 2', isValid: true}
+          {id: 'C1', value: 'Unnamed Result 1', isValid: true},
+          {id: 'C2', value: 'Unnamed Result 2', isValid: true}
         ]
       },
       {
@@ -53,8 +56,8 @@ const Table = ({
         ],
         weight: {value: 1, isValid: true},
         results: [
-          {value: 'Unnamed Result 3', isValid: true},
-          {value: 'Unnamed Result 4', isvalid: true}
+          {id: 'C1', value: 'Unnamed Result 3', isValid: true},
+          {id: 'C2', value: 'Unnamed Result 4', isvalid: true}
         ]
       }
     ],
@@ -103,6 +106,7 @@ const Table = ({
 
   const rollFormula  = tableState.config.rollFormula.value
   const tableColumns = tableState.columnTitles
+  const tableEntries = tableState.entries
 
 
   useEffect(() => {
@@ -125,17 +129,32 @@ const Table = ({
           <table>
             <thead>
               <tr>
-                <th className='sz1'></th>
-                <th className='sz2'>{rollFormula}</th>
-                <th className='sz1'>Weight</th>
+                <th className='col-xs'> </th>
+                <th className='col-med'>{rollFormula}</th>
+                <th className='col-sm'>Weight</th>
                 {tableColumns.map((c,idx) =>
-                  <th className='sz4'><Input key={`${tableID}-${c.id}`} id={`${tableID}-${c.id}`} startingValue={c.value} startingValiditiy={c.isValid} /></th>
+                  <th><Input classes='full center'size='4' maxLength='4'  key={`${tableID}-${c.id}`} id={`${tableID}-${c.id}`} startingValue={c.value} startingValiditiy={c.isValid} /></th>
                 )}
                 {/* Iterate over columnTitles in state and create an Input object with the same ID as the key's name and the starting value of its value.
                 {tableColumns && tableColumns.map((c, idx) => 
                   <th><Input id={Object.keys(c)[0]} startingValue={Object.values(c)[0].value} onInput={changeHandler}/></th>
                 )} */}
               </tr>
+              {tableEntries.map((e, idx) =>
+              <tr>
+                <td className='col-xs'><FontAwesomeIcon icon={icons['bars']}/></td>
+                <td className=''>
+                  <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}min`} id={`${tableID}-${e.id}min`} startingValue={e.ranges[0].value} startingValidity={e.ranges[0].isValid}/>&nbsp;-&nbsp;
+                  <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}max`} id={`${tableID}-${e.id}max`} startingValue={e.ranges[1].value} startingValidity={e.ranges[1].isValid}/>
+                </td>
+                <td className=''>
+                  <Input classes='full center' className='full' key={`${tableID}-${e.id}weight`} id={`${tableID}-${e.id}weight`} startingValue={e.weight.value} startingValidity={e.weight.isValid}/>
+                </td>
+                {e.results.map((r, idx) =>
+                  <td className='sz4'><Input classes='full' type="area" key={`${tableID}-${r.id}${e.id}`} id={`${tableID}-${r.id}${e.id}`} startingValue={r.value} startingValidity={r.isValid}/></td>
+                )}
+              </tr>
+              )}
             </thead>
           </table>
         </section>
