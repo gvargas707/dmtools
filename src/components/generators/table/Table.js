@@ -135,11 +135,10 @@ const Table = ({
                 {tableColumns.map((c,idx) =>
                   <th><Input classes='full center'size='4' maxLength='4'  key={`${tableID}-${c.id}`} id={`${tableID}-${c.id}`} startingValue={c.value} startingValiditiy={c.isValid} /></th>
                 )}
-                {/* Iterate over columnTitles in state and create an Input object with the same ID as the key's name and the starting value of its value.
-                {tableColumns && tableColumns.map((c, idx) => 
-                  <th><Input id={Object.keys(c)[0]} startingValue={Object.values(c)[0].value} onInput={changeHandler}/></th>
-                )} */}
+                
               </tr>
+              </thead>
+              <tbody>
               {tableEntries.map((e, idx) =>
               <tr>
                 <td className='col-xs'><FontAwesomeIcon icon={icons['bars']}/></td>
@@ -155,7 +154,7 @@ const Table = ({
                 )}
               </tr>
               )}
-            </thead>
+              </tbody>
           </table>
         </section>
       </form>
