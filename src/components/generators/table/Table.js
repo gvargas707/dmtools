@@ -64,45 +64,9 @@ const Table = ({
     history: [],
     tableIsValid: false
   },
-  // tableData = {
-  //   [`${tableID}Title`] : {
-  //     value: '',
-  //     isValid: false,
-  //   },
-  //   [`${tableID}Description`]: {
-  //     value: '',
-  //     isValid: false
-  //   },
-  //   [`${tableID}RollColumns`]: false,
-  //   [`${tableID}RollFormula`]: {
-  //     value: '1d1',
-  //     isValid: true,
-  //   },
-  //   [`${tableID}ColumnTitles`]: [
-  //     { [`${tableID}C1`]:{value: 'Unnamed Column 1', isValid: true}},
-  //     { [`${tableID}C2`]:{value: 'Unnamed Column 2', isValid: true}}
-  //   ],
-  //   entries: [
-  //     {
-  //       ranges: [
-  //         {value: 1, isValid: true},
-  //         {value: 1, isValid: true},
-  //       ],
-  //       weight: {value: 1, isValid: true},
-  //       results: [
-  //         {value: 'Unnamed Result', isValid: true}
-  //       ]
-  //     },
-  //   ],
-  //   history: [],
-  //   isValid: false
-  // }
 }) => {
 
   const [ tableState, changeHandler ] = useTable(tableData)
-
-  // const rollFormula = tableState[`${tableID}RollFormula`].value
-  // const tableColumns = tableState[`${tableID}ColumnTitles`]
 
   const rollFormula  = tableState.config.rollFormula.value
   const tableColumns = tableState.columnTitles
