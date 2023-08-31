@@ -24,7 +24,6 @@ const checkIsValid = (obj, action) => {
 
 
 const tableReducer = (state, action) => {
-  console.log(action)
   let tableIsValid = checkIsValid(state, action)
   switch (action.type) {
     case 'UPDATE':
@@ -44,6 +43,22 @@ const tableReducer = (state, action) => {
         ],
         tableIsValid
       }
+    case 'UPDATE_COLUMN_TITLE':
+      const updatedColumnTitles = state.columnTitles.map(column => {
+        if (column.id === action.input) {
+          return {
+            id: action.input,
+            value: action.payload.value,
+            isvalid: action.payload.isValid
+          };
+        }
+        return column
+      })
+      return {
+        ...state,
+        columnTitles: updatedColumnTitles,
+        tableIsValid
+      }
     default:
       return state;
   }
@@ -57,6 +72,7 @@ export const useTable = ( tableData ) => {
     const {stateId, value, isValid, isChecked} = input
     const properties = {value,isValid,isChecked}
     const payload = {}
+    //Add properties that have a defined value into payload, ignore undefined/null
     for (let property in properties){
       if (properties[property] !== undefined){
         payload[property] = properties[property]
@@ -67,37 +83,18 @@ export const useTable = ( tableData ) => {
       input: stateId,
       payload
     })
-    // dispatch({
-    //   type: 'UPDATE_CONFIG',
-    //   input: stateId,
-    //   payload: {
-    //     value,
-    //     isValid,
-    //     isToggled: isChecked
-    //   }
-    // })
-    // if (type !== 'checkbox'){
-    //   dispatch({
-    //     type: 'UPDATE_FIXED',
-    //     payload: {
-    //       input: id,
-    //       value,
-    //       isValid
-    //     }
-    //   })
-    // }
-    // if (type === 'checkbox'){
-    //   dispatch({
-    //     type: 'UPDATE_PROPERTIES',
-    //     payload: {
-    //       input: id,
-    //       isChecked
-    //     }
-    //   })
-    // }
   },[])
 
-  return [tableState, changeHandler]
+  const columnTitleHandler = useCallback((input) => {
+    const {stateId, value, isValid} = input
+    dispatch({
+      type: 'UPDATE_COLUMN_TITLE',
+      input: stateId,
+      payload: {value, isValid}
+    })
+  }, [])
+
+  return [tableState, changeHandler, columnTitleHandler]
 }
 
 export default useTable;

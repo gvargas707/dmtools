@@ -66,7 +66,7 @@ const Table = ({
   },
 }) => {
 
-  const [ tableState, changeHandler ] = useTable(tableData)
+  const [ tableState, changeHandler, columnTitleHandler ] = useTable(tableData)
 
   const rollFormula  = tableState.config.rollFormula.value
   const tableColumns = tableState.columnTitles
@@ -74,7 +74,7 @@ const Table = ({
 
 
   useEffect(() => {
-    //console.log(tableState)
+    console.log(tableState)
   }, [tableState])
 
 
@@ -97,7 +97,7 @@ const Table = ({
                 <th className='col-med'>{rollFormula}</th>
                 <th className='col-sm'>Weight</th>
                 {tableColumns.map((c,idx) =>
-                  <th><Input classes='full center'size='4' maxLength='4'  key={`${tableID}-${c.id}`} id={`${tableID}-${c.id}`} startingValue={c.value} startingValiditiy={c.isValid} /></th>
+                  <th><Input classes='full center' key={`${tableID}-${c.id}`} id={`${tableID}-${c.id}`} startingValue={c.value} startingValiditiy={c.isValid} onInput={columnTitleHandler}/></th>
                 )}
                 
               </tr>
@@ -107,14 +107,14 @@ const Table = ({
               <tr>
                 <td className='col-xs'><FontAwesomeIcon icon={icons['bars']}/></td>
                 <td className=''>
-                  <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}min`} id={`${tableID}-${e.id}min`} startingValue={e.ranges[0].value} startingValidity={e.ranges[0].isValid}/>&nbsp;-&nbsp;
-                  <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}max`} id={`${tableID}-${e.id}max`} startingValue={e.ranges[1].value} startingValidity={e.ranges[1].isValid}/>
+                  <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}min`} id={`${tableID}-${e.id}min`} startingValue={e.ranges[0].value} startingValidity={e.ranges[0].isValid} onInput={() => {}}/>&nbsp;-&nbsp;
+                  <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}max`} id={`${tableID}-${e.id}max`} startingValue={e.ranges[1].value} startingValidity={e.ranges[1].isValid} onInput={() => {}}/>
                 </td>
                 <td className=''>
-                  <Input classes='full center' className='full' key={`${tableID}-${e.id}weight`} id={`${tableID}-${e.id}weight`} startingValue={e.weight.value} startingValidity={e.weight.isValid}/>
+                  <Input classes='full center' className='full' key={`${tableID}-${e.id}weight`} id={`${tableID}-${e.id}weight`} startingValue={e.weight.value} startingValidity={e.weight.isValid} onInput={() => {}}/>
                 </td>
                 {e.results.map((r, idx) =>
-                  <td className='sz4'><Input classes='full' type="area" key={`${tableID}-${r.id}${e.id}`} id={`${tableID}-${r.id}${e.id}`} startingValue={r.value} startingValidity={r.isValid}/></td>
+                  <td className='sz4'><Input classes='full' type='area' key={`${tableID}-${r.id}${e.id}`} id={`${tableID}-${r.id}${e.id}`} startingValue={r.value} startingValidity={r.isValid} onInput={() => {}}/></td>
                 )}
               </tr>
               )}
