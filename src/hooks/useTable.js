@@ -59,6 +59,16 @@ const tableReducer = (state, action) => {
         columnTitles: updatedColumnTitles,
         tableIsValid
       }
+    case 'UPDATE_ENTRY_RANGE':
+      const [id, position] = action.input.split(':')
+      console.log(`id: ${id}`)
+      console.log(`position: ${position}`)
+      const updatedEntryRanges = state.entries.map(entry => {
+        if (entry.id === id) {
+          
+        }
+      })
+      return state;
     default:
       return state;
   }
@@ -94,7 +104,27 @@ export const useTable = ( tableData ) => {
     })
   }, [])
 
-  return [tableState, changeHandler, columnTitleHandler]
+  const entryRangeHandler = useCallback((input) => {
+    const {stateId, value, isValid} = input
+    dispatch({
+      type: 'UPDATE_ENTRY_RANGE',
+      input: stateId,
+      payload: {value, isValid}
+    })
+  }, [])
+
+
+  // const entryRangeHandler = useCallback((input => {
+  //   const {stateId, value, isValid} = input
+  //   dispatch({
+  //     type: 'UPDATE_ENRTY_RANGE',
+  //     input: stateId,
+  //     payload: {value, isValid}
+  //   })
+  // },[]))
+
+
+  return [tableState, changeHandler, columnTitleHandler, entryRangeHandler]
 }
 
 export default useTable;
