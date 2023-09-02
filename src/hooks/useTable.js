@@ -61,8 +61,8 @@ const tableReducer = (state, action) => {
       }
     case 'UPDATE_ENTRY_RANGE':
       const [id, position] = action.input.split(':')
-      console.log(`id: ${id}`)
-      console.log(`position: ${position}`)
+      //console.log(`id: ${id}`)
+      //console.log(`position: ${position}`)
       const updatedEntryRanges = state.entries.map(entry => {
         if (entry.id === id) {
           
