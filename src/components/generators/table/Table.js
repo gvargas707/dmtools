@@ -63,6 +63,16 @@ const Table = ({
           {id: 'C1', value: 'Unnamed Result 3', isValid: true},
           {id: 'C2', value: 'Unnamed Result 4', isvalid: true}
         ]
+      },
+      {
+        id: 'R3',
+        minRoll: {value: 9, isValid: true},
+        maxRoll: {value: 12, isValid: true},
+        weight: {value: 4, isValid: true},
+        results: [
+          {id: 'C1', value: 'Unnamed Result 5', isValid: true},
+          {id: 'C2', value: 'Unnamed Result 6', isValid: true}
+        ]
       }
     ],
     history: [],
@@ -111,8 +121,8 @@ const Table = ({
               <tr>
                 <td className='col-xs'><FontAwesomeIcon icon={icons['bars']}/></td>
                 <td className=''>
-                  <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}min`} id={`${tableID}-${e.id}:min`} startingValue={e.minRoll.value} startingValidity={e.minRoll.isValid} onInput={entryRangeHandler}/>&nbsp;-&nbsp;
-                  <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}max`} id={`${tableID}-${e.id}:max`} startingValue={e.maxRoll.value} startingValidity={e.maxRoll.isValid} onInput={entryRangeHandler}/>
+                  <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}minRoll`} id={`${tableID}-${e.id}:minRoll`} startingValue={e.minRoll.value} startingValidity={e.minRoll.isValid} onInput={entryRangeHandler}/>&nbsp;-&nbsp;
+                  <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}maxRoll`} id={`${tableID}-${e.id}:maxRoll`} startingValue={e.maxRoll.value} startingValidity={e.maxRoll.isValid} onInput={entryRangeHandler}/>
                 </td>
                 <td className=''>
                   <Input classes='full center' className='full' key={`${tableID}-${e.id}weight`} id={`${tableID}-${e.id}weight`} startingValue={e.weight.value} startingValidity={e.weight.isValid} onInput={() => {}}/>
