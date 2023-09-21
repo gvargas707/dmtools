@@ -63,26 +63,15 @@ const tableReducer = (state, action) => {
       const [id, position] = action.input.split(':')
       console.log(`id: ${id}`)
       console.log(`position: ${position}`)
-      // console.log(state.entries)
+      console.log(state.entries)
       // console.log(action)
       const updatedEntryRange = state.entries
-      .map(entry => {
-        if (entry.id === id) {
-          return {
-            value : action.payload.value,
-            isValid: action.payload.isValid
-          }
-        }
-        return entry
-      })
-      const updatedEntry = {
-
-      }
+      .filter(entry => entry.id === id)[0]
       // return {
       //   ...state,
       //   entries: state.entries.map((entry) => entry.id === id ? updatedEntryRange : entry)
       // }
-      console.log(updatedEntryRange)
+      // console.log(updatedEntryRange)
       console.log('Computed State:')
       console.log({
           ...state,
