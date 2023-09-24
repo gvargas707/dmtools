@@ -64,9 +64,10 @@ const tableReducer = (state, action) => {
       console.log(`id: ${id}`)
       console.log(`position: ${position}`)
       console.log(state.entries)
-      // console.log(action)
       const updatedEntryRange = state.entries
       .filter(entry => entry.id === id)[0]
+      console.log('Action:')
+      console.log(action)
       // return {
       //   ...state,
       //   entries: state.entries.map((entry) => entry.id === id ? updatedEntryRange : entry)
