@@ -38,13 +38,9 @@ const Table = ({
     entries: [
       {
         id: 'R1',
-        minRoll: {value: 1, isValid: true},
-        maxRoll: {value: 4, isValid: true},
-        ranges: [
-          {value: 1, isValid: true},
-          {value: 1, isValid: true},
-        ],
-        weight: {value: 4, isValid: true},
+        minRoll: {value: '1', isValid: true},
+        maxRoll: {value: '4', isValid: true},
+        weight: {value: '4', isValid: true},
         results: [
           {id: 'C1', value: 'Unnamed Result 1', isValid: true},
           {id: 'C2', value: 'Unnamed Result 2', isValid: true}
@@ -52,13 +48,9 @@ const Table = ({
       },
       {
         id: 'R2',
-        minRoll: {value: 5, isValid: true},
-        maxRoll: {value: 8, isValid: true},
-        ranges: [
-          {value: 2, isValid: true},
-          {value: 2, isValid: true}
-        ],
-        weight: {value: 4, isValid: true},
+        minRoll: {value: '5', isValid: true},
+        maxRoll: {value: '8', isValid: true},
+        weight: {value: '4', isValid: true},
         results: [
           {id: 'C1', value: 'Unnamed Result 3', isValid: true},
           {id: 'C2', value: 'Unnamed Result 4', isvalid: true}
@@ -66,9 +58,9 @@ const Table = ({
       },
       {
         id: 'R3',
-        minRoll: {value: 9, isValid: true},
-        maxRoll: {value: 12, isValid: true},
-        weight: {value: 4, isValid: true},
+        minRoll: {value: '9', isValid: true},
+        maxRoll: {value: '12', isValid: true},
+        weight: {value: '4', isValid: true},
         results: [
           {id: 'C1', value: 'Unnamed Result 5', isValid: true},
           {id: 'C2', value: 'Unnamed Result 6', isValid: true}
@@ -80,7 +72,7 @@ const Table = ({
   },
 }) => {
 
-  const [ tableState, changeHandler, columnTitleHandler, entryRangeHandler ] = useTable(tableData)
+  const [ tableState, changeHandler, columnTitleHandler, entryRangeHandler, entryWeightHandler] = useTable(tableData)
 
   const rollFormula  = tableState.config.rollFormula.value
   const tableColumns = tableState.columnTitles
@@ -88,7 +80,7 @@ const Table = ({
 
 
   useEffect(() => {
-    //console.log(tableState)
+    console.log(tableState)
   }, [tableState])
 
 
@@ -125,7 +117,7 @@ const Table = ({
                   <Input classes='center' size='4' maxLength='4' key={`${tableID}-${e.id}maxRoll`} id={`${tableID}-${e.id}:maxRoll`} startingValue={e.maxRoll.value} startingValidity={e.maxRoll.isValid} onInput={entryRangeHandler}/>
                 </td>
                 <td className=''>
-                  <Input classes='full center' className='full' key={`${tableID}-${e.id}weight`} id={`${tableID}-${e.id}weight`} startingValue={e.weight.value} startingValidity={e.weight.isValid} onInput={() => {}}/>
+                  <Input classes='full center' className='full' key={`${tableID}-${e.id}weight`} id={`${tableID}-${e.id}weight`} startingValue={e.weight.value} startingValidity={e.weight.isValid} onInput={entryWeightHandler}/>
                 </td>
                 {e.results.map((r, idx) =>
                   <td className='sz4'><Input classes='full' type='area' key={`${tableID}-${r.id}${e.id}`} id={`${tableID}-${r.id}${e.id}`} startingValue={r.value} startingValidity={r.isValid} onInput={() => {}}/></td>

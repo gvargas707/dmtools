@@ -61,28 +61,24 @@ const tableReducer = (state, action) => {
       }
     case 'UPDATE_ENTRY_RANGE':
       const [id, position] = action.input.split(':')
-      console.log(`id: ${id}`)
-      console.log(`position: ${position}`)
-      console.log(state.entries)
-      const updatedEntryRange = state.entries
-      .filter(entry => entry.id === id)[0]
-      console.log('Action:')
-      console.log(action)
-      // return {
-      //   ...state,
-      //   entries: state.entries.map((entry) => entry.id === id ? updatedEntryRange : entry)
-      // }
-      // console.log(updatedEntryRange)
-      console.log('Computed State:')
-      console.log({
-          ...state,
-          entries: state.entries.map((entry) => entry.id === id ? updatedEntryRange : entry)
-        })
-      console.log('Computed State END')
-      console.log('Actual State:')
-      console.log(state)
-      console.log('Actual State END')
-      return state;
+      const updatedEntryRange = {
+        ...state.entries.filter(entry => entry.id === id)[0],
+        [`${position}`]: {value: action.payload.value, isValid: action.payload.isValid}
+      }
+      return {
+        ...state,
+        entries: state.entries.map((entry) => entry.id === id ? updatedEntryRange : entry)
+      }
+    case 'UPDATE_WEIGHT':
+      const weightId = action.input.substring(0, 2)
+      const updatedWeight = {
+        ...state.entries.filter(entry => entry.id === weightId)[0],
+        weight: {value: action.payload.value, isValid: action.payload.isValid }
+      }
+      return {
+        ...state,
+        entries: state.entries.map((entry) => entry.id === weightId ? updatedWeight : entry)
+      };
     default:
       return state;
   }
@@ -127,6 +123,15 @@ export const useTable = ( tableData ) => {
     })
   }, [])
 
+  const entryWeightHandler = useCallback((input) => {
+    const {stateId, value, isValid} = input
+    dispatch({
+      type: 'UPDATE_WEIGHT',
+      input: stateId,
+      payload: {value, isValid}
+    })
+  }, [])
+
 
   // const entryRangeHandler = useCallback((input => {
   //   const {stateId, value, isValid} = input
@@ -138,7 +143,7 @@ export const useTable = ( tableData ) => {
   // },[]))
 
 
-  return [tableState, changeHandler, columnTitleHandler, entryRangeHandler]
+  return [tableState, changeHandler, columnTitleHandler, entryRangeHandler, entryWeightHandler]
 }
 
 export default useTable;
