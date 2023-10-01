@@ -53,7 +53,7 @@ const Table = ({
         weight: {value: '4', isValid: true},
         results: [
           {id: 'C1', value: 'Unnamed Result 3', isValid: true},
-          {id: 'C2', value: 'Unnamed Result 4', isvalid: true}
+          {id: 'C2', value: 'Unnamed Result 4', isValid: true}
         ]
       },
       {
@@ -72,7 +72,7 @@ const Table = ({
   },
 }) => {
 
-  const [ tableState, changeHandler, columnTitleHandler, entryRangeHandler, entryWeightHandler] = useTable(tableData)
+  const [ tableState, changeHandler, columnTitleHandler, entryRangeHandler, entryWeightHandler, entryResultHandler] = useTable(tableData)
 
   const rollFormula  = tableState.config.rollFormula.value
   const tableColumns = tableState.columnTitles
@@ -120,7 +120,7 @@ const Table = ({
                   <Input classes='full center' className='full' key={`${tableID}-${e.id}weight`} id={`${tableID}-${e.id}weight`} startingValue={e.weight.value} startingValidity={e.weight.isValid} onInput={entryWeightHandler}/>
                 </td>
                 {e.results.map((r, idx) =>
-                  <td className='sz4'><Input classes='full' type='area' key={`${tableID}-${r.id}${e.id}`} id={`${tableID}-${r.id}${e.id}`} startingValue={r.value} startingValidity={r.isValid} onInput={() => {}}/></td>
+                  <td className='sz4'><Input classes='full' type='area' key={`${tableID}-${r.id}${e.id}`} id={`${tableID}-${r.id}:${e.id}`} startingValue={r.value} startingValidity={r.isValid} onInput={entryResultHandler}/></td>
                 )}
               </tr>
               )}

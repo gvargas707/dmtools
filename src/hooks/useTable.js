@@ -79,6 +79,14 @@ const tableReducer = (state, action) => {
         ...state,
         entries: state.entries.map((entry) => entry.id === weightId ? updatedWeight : entry)
       };
+    case 'UPDATE_RESULT':
+      const [entryCol, entryRow] = action.input.split(':')
+      return {
+        ...state,
+        entries: state.entries.map(entry => entry.id === entryRow
+        ? {...entry, results: entry.results.map(result => result.id === entryCol ? {...result, value: action.payload.value, isValid: action.payload.isValid} : result)}
+        : entry)
+      }
     default:
       return state;
   }
@@ -132,18 +140,16 @@ export const useTable = ( tableData ) => {
     })
   }, [])
 
+  const entryResultHandler = useCallback((input) => {
+    const {stateId, value, isValid} = input
+    dispatch({
+      type: 'UPDATE_RESULT',
+      input: stateId,
+      payload: {value, isValid}
+    })
+  }, [])
 
-  // const entryRangeHandler = useCallback((input => {
-  //   const {stateId, value, isValid} = input
-  //   dispatch({
-  //     type: 'UPDATE_ENRTY_RANGE',
-  //     input: stateId,
-  //     payload: {value, isValid}
-  //   })
-  // },[]))
-
-
-  return [tableState, changeHandler, columnTitleHandler, entryRangeHandler, entryWeightHandler]
+  return [tableState, changeHandler, columnTitleHandler, entryRangeHandler, entryWeightHandler, entryResultHandler]
 }
 
 export default useTable;
