@@ -57,7 +57,6 @@ section.entries table {
 section.entries table th,
 section.entries table td {
   text-align: center;
-  border:1px solid lightgray;
   padding: 0.25em;
 }
 
@@ -77,8 +76,13 @@ section.entries table td.col-med {
   width: 8%;
 }
 
-section.entries table input.full,
+/* section.entries table input.full,
 section.entries table textarea.full {
+  width: 100%;
+  box-sizing: border-box;
+} */
+
+section.entries table .full {
   width: 100%;
   box-sizing: border-box;
 }

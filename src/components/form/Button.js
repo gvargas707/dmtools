@@ -13,9 +13,11 @@ const Button = ({
   disabled = false,
   label = 'Submit',
   classes = '',
+  onClick = (() => {console.log('Test')}),
+  children
 }) => {
   return (
-    <button className={classes} disabled={disabled}>{label}</button>
+    <button className={classes} disabled={disabled} onClick={onClick}>{children || label}</button>
   )
 };
 

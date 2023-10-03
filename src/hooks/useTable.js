@@ -87,6 +87,39 @@ const tableReducer = (state, action) => {
         ? {...entry, results: entry.results.map(result => result.id === entryCol ? {...result, value: action.payload.value, isValid: action.payload.isValid} : result)}
         : entry)
       }
+    case 'ADD_ROW':
+      const newRow  = {
+        id: `R${state.entries.length+1}`,
+        minRoll: {value: '', isValid: false},
+        maxRoll: {value: '', isValid: false},
+        weight: {value: '', isValid: false},
+        results: state.columnTitles.map((col, idx) => {
+          return {
+            id: `C${idx+1}`,
+            value: '',
+            isValid: false
+          }
+        })
+      }
+      return {
+        ...state,
+        entries: [
+          ...state.entries,
+          newRow
+        ]
+      }
+    case 'REMOVE_ROW':
+      const updatedEntries = state.entries.filter(entry => entry.id !== action.input)
+      console.log(updatedEntries)
+      return {
+        ...state,
+        entries: updatedEntries.map((entry, idx) => {
+          return {
+            ...entry,
+            id: `R${idx+1}`
+          }
+        })
+      }
     default:
       return state;
   }
@@ -149,7 +182,32 @@ export const useTable = ( tableData ) => {
     })
   }, [])
 
-  return [tableState, changeHandler, columnTitleHandler, entryRangeHandler, entryWeightHandler, entryResultHandler]
+  const tableAddRowHandler = useCallback((input) => {
+    dispatch({
+      type: 'ADD_ROW',
+      input,
+      payload: {}
+    })
+  }, [])
+
+  const tableRemoveRowHandler = useCallback((input) => {
+    dispatch({
+      type: 'REMOVE_ROW',
+      input,
+      payload: {}
+    })
+  }, [])
+
+  return [
+    tableState,
+    changeHandler,
+    columnTitleHandler,
+    entryRangeHandler,
+    entryWeightHandler,
+    entryResultHandler,
+    tableAddRowHandler,
+    tableRemoveRowHandler
+  ]
 }
 
 export default useTable;

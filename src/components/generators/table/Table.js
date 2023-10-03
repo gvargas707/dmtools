@@ -4,6 +4,7 @@ import useTable from '../../../hooks/useTable';
 
 import Input from '../../form/Input';
 import Checkbox from '../../form/Checkbox';
+import Button from '../../form/Button';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icons } from '../../../utils/icons';
@@ -72,11 +73,31 @@ const Table = ({
   },
 }) => {
 
-  const [ tableState, changeHandler, columnTitleHandler, entryRangeHandler, entryWeightHandler, entryResultHandler] = useTable(tableData)
+  const [
+    tableState,
+    changeHandler,
+    columnTitleHandler,
+    entryRangeHandler,
+    entryWeightHandler,
+    entryResultHandler,
+    tableAddRowHandler,
+    tableRemoveRowHandler
+  ] = useTable(tableData)
 
   const rollFormula  = tableState.config.rollFormula.value
   const tableColumns = tableState.columnTitles
   const tableEntries = tableState.entries
+
+
+  const buttonAddRowHandler = (evt) => {
+    evt.preventDefault();
+    tableAddRowHandler(evt)
+  }
+
+  const buttonRemoveRowHandler = (evt, id) => {
+    evt.preventDefault();
+    tableRemoveRowHandler(id)
+  }
 
 
   useEffect(() => {
@@ -86,6 +107,7 @@ const Table = ({
 
   return (
     <div className='table-container'>
+      <Button onClick={() => console.log('Test is a Test instead')}/>
       <form>
         <Input classes='table-container__title' id={`${tableID}-title`} placeholder='Name' onInput={changeHandler} />
         <Input type='area' classes='table-container__description' id={`${tableID}-description`} label="Description" onInput={changeHandler}/>
@@ -122,8 +144,12 @@ const Table = ({
                 {e.results.map((r, idx) =>
                   <td className='sz4'><Input classes='full' type='area' key={`${tableID}-${r.id}${e.id}`} id={`${tableID}-${r.id}:${e.id}`} startingValue={r.value} startingValidity={r.isValid} onInput={entryResultHandler}/></td>
                 )}
+                <td className='col-xs'><Button classes='transparent borderless' key={`${tableID}-${e.id}delete`} id={`${tableID}-${e.id}delete`} onClick={(evt) => buttonRemoveRowHandler(evt, e.id)}><FontAwesomeIcon icon={icons['trash']}/></Button></td>
               </tr>
               )}
+              <tr>
+                <td colSpan={tableColumns.length + 5}><Button classes='full' onClick={buttonAddRowHandler}>Add Row</Button></td>
+              </tr>
               </tbody>
           </table>
         </section>
